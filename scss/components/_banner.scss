@@ -1,0 +1,29 @@
+.sectionBanner {
+    height: auto;
+    .row{
+        .rowBanner{
+            height: 55rem;
+            background-image: url(/Images/Asset1.png);
+            background-repeat: no-repeat;
+            background-attachment:fixed;
+            object-fit:cover;
+            object-position: right;
+            .containerText {
+                position: relative;
+                padding-top: 20%;
+                text-shadow: 2px 2px 4px black;
+                
+                h1{
+                    display: inline-block;
+                    color:white;
+                    font-style: italic;
+                    font-size: 5rem;
+                    font-family: 'Oswald', sans-serif;
+                    background-image: linear-gradient(to right,#151616,transparent);
+
+                }
+               
+            }
+        }
+    }
+}

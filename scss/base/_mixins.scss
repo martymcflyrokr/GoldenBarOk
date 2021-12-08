@@ -1,0 +1,6 @@
+//mixins
+
+@mixin escalar ($transformar) {
+    transform: $transformar;
+
+}

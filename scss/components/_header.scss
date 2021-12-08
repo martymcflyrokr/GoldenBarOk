@@ -1,0 +1,27 @@
+@import '../base/mixins';
+
+header {
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px;
+    .navbar {
+        a:hover {
+            @include escalar(scale(1.03));
+            transition-duration: 1s;
+        }
+        .navbar-nav {
+            .nav-item {
+                a:hover {
+                    @include escalar(scale(1.2));
+                }
+            }
+        }
+    }
+    .navbar-brand {
+        a:hover {
+            @include escalar(scale(1.2));
+        }
+
+    }
+
+}
+
