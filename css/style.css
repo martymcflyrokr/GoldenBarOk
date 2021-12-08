@@ -93,8 +93,9 @@ header {
     color: whitesmoke;
     padding-bottom: 20px;
     font-style: italic; }
-    .burgerExtendido .contenedorburgerExtendido .conTitleBurg h1 {
-      font-size: 4rem; }
+    .burgerExtendido .contenedorburgerExtendido .conTitleBurg .h1CatalogoBurgers {
+      font-size: 4rem;
+      color: #FFCC00; }
   .burgerExtendido .contenedorburgerExtendido .imgburgerExtendido {
     width: 100%;
     display: flex; }

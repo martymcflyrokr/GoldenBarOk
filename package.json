@@ -268,5 +268,13 @@
     "yargs-parser": "^20.2.9",
     "yargs": "^13.3.2"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/martymcflyrokr/GoldenBarOk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/martymcflyrokr/GoldenBarOk/issues"
+  },
+  "homepage": "https://github.com/martymcflyrokr/GoldenBarOk#readme",
   "description": ""
 }
