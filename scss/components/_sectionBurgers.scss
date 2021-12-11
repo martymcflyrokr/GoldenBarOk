@@ -6,8 +6,13 @@
     width: 100%;
     padding-top: 9%;
     padding-bottom: 12%;
+    object-position: right;
     @extend %fuenteTitulos;
-    background-image: linear-gradient(to top,$amarillo-marca2,$amarillo-marca1);
+    background-image: url(/Images/bgtest2.png);
+    background-repeat:no-repeat;
+    background-size: cover;
+    object-fit:cover;
+    
     .containerBurgers {
         .card {
             &:hover {

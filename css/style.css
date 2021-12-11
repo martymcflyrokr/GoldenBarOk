@@ -21,7 +21,7 @@ li {
 html {
   font-size: 62,5%; }
 
-.sectionBurgers {
+.sectionBurgers, .burgerExtendido, .burgerExtendido .contenedorburgerExtendido .conTitleBurg .h1CatalogoBurgers, .sectionPromos {
   font-family: 'Oswald', sans-serif; }
 
 html {
@@ -59,7 +59,7 @@ header {
         font-family: 'Oswald', sans-serif;
         background-image: linear-gradient(to right, #151616, transparent); }
 
-.sectionBurgers {
+.sectionBurgers, .burgerExtendido, .burgerExtendido .contenedorburgerExtendido .conTitleBurg .h1CatalogoBurgers, .sectionPromos {
   font-family: 'Oswald', sans-serif; }
 
 .sectionBurgers {
@@ -67,7 +67,11 @@ header {
   width: 100%;
   padding-top: 9%;
   padding-bottom: 12%;
-  background-image: linear-gradient(to top, #ebab15, #FFCC00); }
+  object-position: right;
+  background-image: url(/Images/bgtest2.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover; }
   .sectionBurgers .containerBurgers .card:hover {
     transform: scale(1.02);
     transition: 200ms;
@@ -84,36 +88,67 @@ header {
     padding-top: 30px;
     justify-content: center; }
 
+.sectionBurgers, .burgerExtendido, .burgerExtendido .contenedorburgerExtendido .conTitleBurg .h1CatalogoBurgers, .sectionPromos {
+  font-family: 'Oswald', sans-serif; }
+
 .burgerExtendido {
-  padding-top: 100px;
-  padding-bottom: 100px;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
   height: auto;
-  background-color: whitesmoke; }
+  background-image: url(/Images/bgtest2.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover; }
   .burgerExtendido .contenedorburgerExtendido .conTitleBurg {
     color: whitesmoke;
+    text-shadow: 0px 2px 50px black;
     padding-bottom: 20px;
     font-style: italic; }
     .burgerExtendido .contenedorburgerExtendido .conTitleBurg .h1CatalogoBurgers {
       font-size: 4rem;
-      color: #FFCC00; }
+      color: whitesmoke; }
   .burgerExtendido .contenedorburgerExtendido .imgburgerExtendido {
     width: 100%;
     display: flex; }
-    .burgerExtendido .contenedorburgerExtendido .imgburgerExtendido img {
-      width: 100%;
-      border-radius: 10%; }
-      .burgerExtendido .contenedorburgerExtendido .imgburgerExtendido img:hover {
-        transform: scale(1.02);
-        transition: 200ms;
-        opacity: 75%; }
+    .burgerExtendido .contenedorburgerExtendido .imgburgerExtendido .containerburgas {
+      position: relative;
+      width: 30%; }
+      .burgerExtendido .contenedorburgerExtendido .imgburgerExtendido .containerburgas:hover .overlay {
+        opacity: 1; }
+      .burgerExtendido .contenedorburgerExtendido .imgburgerExtendido .containerburgas img {
+        width: 100%;
+        height: 100%; }
+      .burgerExtendido .contenedorburgerExtendido .imgburgerExtendido .containerburgas .overlay {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        width: 100%;
+        opacity: 0;
+        transition: .5s ease;
+        background-color: #ebab15; }
+        .burgerExtendido .contenedorburgerExtendido .imgburgerExtendido .containerburgas .overlay .texto {
+          color: white;
+          font-size: 1.4rem;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          -webkit-transform: translate(-50%, -50%);
+          -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+          text-align: center; }
   .burgerExtendido .contenedorburgerExtendido .botonVolverHome {
     display: flex;
-    padding-top: 100px;
+    padding-top: 3rem;
     justify-content: center; }
 
 .drinks {
   padding-top: 15%;
-  padding-bottom: 20%; }
+  padding-bottom: 20%;
+  object-fit: cover;
+  object-position: right; }
   .drinks .containerDrinks {
     height: auto; }
     .drinks .containerDrinks .conTitleBebidas {
@@ -135,15 +170,23 @@ header {
           transition: 200ms;
           opacity: 75%; }
 
+.sectionBurgers, .burgerExtendido, .burgerExtendido .contenedorburgerExtendido .conTitleBurg .h1CatalogoBurgers, .sectionPromos {
+  font-family: 'Oswald', sans-serif; }
+
 .sectionPromos {
   padding-top: 180px;
   padding-bottom: 300px;
   height: auto;
-  background-color: whitesmoke; }
+  object-position: right;
+  background-image: url(/Images/bgtest2.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover; }
   .sectionPromos .contenedorPromos .conTitlePromos {
-    color: #FFCC00;
-    padding-bottom: 30px;
-    font-family: 'Oswald', sans-serif; }
+    color: whitesmoke;
+    text-shadow: 0px 0px 15px gray;
+    padding-bottom: 20px;
+    font-style: italic; }
     .sectionPromos .contenedorPromos .conTitlePromos h2 {
       font-size: 4rem;
       font-style: italic; }
@@ -162,17 +205,17 @@ header {
   bottom: 0;
   right: 0; }
   .contenedorWhatsapp a img {
-    width: 7rem;
+    width: 6rem;
     -webkit-filter: drop-shadow(0px 0px 0px #222);
     filter: drop-shadow(0px 0px 4px #7a7a7a); }
 
-.sectionBurgers {
+.sectionBurgers, .burgerExtendido, .burgerExtendido .contenedorburgerExtendido .conTitleBurg .h1CatalogoBurgers, .sectionPromos {
   font-family: 'Oswald', sans-serif; }
 
 .elFooter {
   color: white;
-  padding-top: 30px;
-  padding-bottom: 10px;
+  padding-top: 2rem;
+  padding-bottom: 3rem;
   object-fit: cover; }
   .elFooter .listadosFooter {
     text-align: center; }
