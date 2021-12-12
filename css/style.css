@@ -190,6 +190,9 @@ header {
     .sectionPromos .contenedorPromos .conTitlePromos h2 {
       font-size: 4rem;
       font-style: italic; }
+      @media only screen and (max-width: 400px) {
+        .sectionPromos .contenedorPromos .conTitlePromos h2 {
+          font-size: 3.5rem; } }
   .sectionPromos .contenedorPromos .imgPromos img {
     width: 100%;
     border-radius: 10%;
