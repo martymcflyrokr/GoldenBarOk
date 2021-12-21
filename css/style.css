@@ -102,7 +102,7 @@ header {
   .burgerExtendido .contenedorburgerExtendido .conTitleBurg {
     color: whitesmoke;
     text-shadow: 0px 2px 50px black;
-    padding-bottom: 20px;
+    padding-bottom: 3rem;
     font-style: italic; }
     .burgerExtendido .contenedorburgerExtendido .conTitleBurg .h1CatalogoBurgers {
       font-size: 4rem;
@@ -111,8 +111,7 @@ header {
     width: 100%;
     display: flex; }
     .burgerExtendido .contenedorburgerExtendido .imgburgerExtendido .containerburgas {
-      position: relative;
-      width: 30%; }
+      position: relative; }
       .burgerExtendido .contenedorburgerExtendido .imgburgerExtendido .containerburgas:hover .overlay {
         opacity: 1; }
       .burgerExtendido .contenedorburgerExtendido .imgburgerExtendido .containerburgas img {
