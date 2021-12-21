@@ -108,7 +108,8 @@ header {
       font-size: 4rem;
       color: whitesmoke; }
   .burgerExtendido .contenedorburgerExtendido .imgburgerExtendido {
-    width: 100%; }
+    width: 100%;
+    display: none; }
     .burgerExtendido .contenedorburgerExtendido .imgburgerExtendido .containerburgas {
       position: relative; }
       .burgerExtendido .contenedorburgerExtendido .imgburgerExtendido .containerburgas:hover .overlay {
