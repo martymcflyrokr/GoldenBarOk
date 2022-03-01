@@ -101,6 +101,7 @@ listaProdu.push(producto3)
 function totalizarPesos() {
     totaltodalacompra = totaltodalacompra + producto1.ventaTotalPesos + producto2.ventaTotalPesos + producto3.ventaTotalPesos
 }
+
 function sumarTotalesCompras() {
     totaltodalacompra = producto1.precioVentaTotal + producto2.precioVentaTotal + producto3.precioVentaTotal
     alert('Resumen compra total : \n - - - - - - - - - \n' +
@@ -133,8 +134,8 @@ while (quiereComprar.toUpperCase() === 'SI') {
     let buscarBurga = listaProdu.find(losprodu => losprodu.nombre == seleccionBur.toUpperCase())
     // console.log('producto que busca el usuario: ' + buscarBurga.nombre)
 
-    if(buscarBurga) {
-        
+    if (buscarBurga) {
+
         switch (buscarBurga.nombre) {
             case producto1.nombre:
                 producto1.pedirUnidades(producto1.unidades)
@@ -143,7 +144,7 @@ while (quiereComprar.toUpperCase() === 'SI') {
                 producto1.ventaTotalunidades()
                 producto1.mostrarCompraTotal()
                 break
-    
+
             case producto2.nombre:
                 producto2.pedirUnidades(producto2.unidades)
                 producto2.stockActual()
@@ -151,7 +152,7 @@ while (quiereComprar.toUpperCase() === 'SI') {
                 producto2.ventaTotalunidades()
                 producto2.mostrarCompraTotal()
                 break
-    
+
             case producto3.nombre:
                 producto3.pedirUnidades(producto3.unidades)
                 producto3.stockActual()
@@ -159,13 +160,13 @@ while (quiereComprar.toUpperCase() === 'SI') {
                 producto3.ventaTotalunidades()
                 producto3.mostrarCompraTotal()
                 break
-    
+
             default: alert('seleccionó un tipo de hamburgesa invalido')
         }
     }
-    else { 
+    else {
         console.log('Ingresó un tipo de burger inexistente')
-        alert ('El producto ingresado no existe')
+        alert('El producto ingresado no existe')
     }
 
     verResumen = prompt('¿Quiere ver el resumen de su carrito?')
