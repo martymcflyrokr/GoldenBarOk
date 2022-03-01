@@ -117,7 +117,20 @@ function sumarTotalesCompras() {
         '\nBurgers Pollo - ' + producto2.unidadesTotales + ' unidades: $' + producto2.precioVentaTotal +
         '\nBurgers Vegan - ' + producto3.unidadesTotales + ' unidades: $' + producto3.precioVentaTotal +
         '\nPrecio Total: $' + totaltodalacompra)
-        
+
+}
+
+function comprar(elproducto) {
+    elproducto.pedirUnidades(elproducto.unidades)
+    elproducto.stockActual()
+    elproducto.ventaTotalPesos()
+    elproducto.ventaTotalunidades()
+    elproducto.mostrarCompraTotal()
+}
+
+function tipoInexistente() {
+    console.log('Ingresó un tipo de burger inexistente')
+    alert('El producto ingresado no existe')
 }
 
 for (const producto of listaProdu) {
@@ -133,44 +146,16 @@ while (quiereComprar.toUpperCase() === 'SI') {
 
     seleccionBur = prompt('Ingrese el tipo de hamburguesa que quiere comprar:\n' + listadoProductosDisponibles)
     let buscarBurga = listaProdu.find(losprodu => losprodu.nombre == seleccionBur.toUpperCase())
-    // console.log('producto que busca el usuario: ' + buscarBurga.nombre)
 
     if (buscarBurga) {
-
-        switch (buscarBurga.nombre) {
-            case producto1.nombre:
-                producto1.pedirUnidades(producto1.unidades)
-                producto1.stockActual()
-                producto1.ventaTotalPesos()
-                producto1.ventaTotalunidades()
-                producto1.mostrarCompraTotal()
-                break
-
-            case producto2.nombre:
-                producto2.pedirUnidades(producto2.unidades)
-                producto2.stockActual()
-                producto2.ventaTotalPesos()
-                producto2.ventaTotalunidades()
-                producto2.mostrarCompraTotal()
-                break
-
-            case producto3.nombre:
-                producto3.pedirUnidades(producto3.unidades)
-                producto3.stockActual()
-                producto3.ventaTotalPesos()
-                producto3.ventaTotalunidades()
-                producto3.mostrarCompraTotal()
-                break
-
-            default: alert('seleccionó un tipo de hamburgesa invalido')
-        }
+        comprar(buscarBurga)
     }
     else {
-        console.log('Ingresó un tipo de burger inexistente')
-        alert('El producto ingresado no existe')
+        tipoInexistente()
     }
 
     verResumen = prompt('¿Quiere ver el resumen de su carrito?')
+    
     if (verResumen.toUpperCase() === 'SI') {
         sumarTotalesCompras()
     } else {
