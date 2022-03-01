@@ -117,6 +117,7 @@ function sumarTotalesCompras() {
         '\nBurgers Pollo - ' + producto2.unidadesTotales + ' unidades: $' + producto2.precioVentaTotal +
         '\nBurgers Vegan - ' + producto3.unidadesTotales + ' unidades: $' + producto3.precioVentaTotal +
         '\nPrecio Total: $' + totaltodalacompra)
+        
 }
 
 for (const producto of listaProdu) {
