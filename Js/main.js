@@ -37,6 +37,7 @@ class Producto {
             alert('La cantidad supera al stock. elija menos unidades.')
             console.log('Supera el stock')
         }
+        return this.stock
     }
 
     valorVenta() {
@@ -64,10 +65,11 @@ class Producto {
             this.unidadesTotales += this.unidades
         }
         else {
-            console.log('no se suma el valo total por que supera el stock.')
+            console.log('no se suma el valor total por que supera el stock.')
         }
     }
 
+    
     stockEsInsuficiente() {
         if ((this.stock < this.unidades) || (this.stock < this.ventaTotalunidades)) {
             console.log('No hay stock suficiente. contamos con ' + this.stock + ' unidades disponibles')
@@ -75,6 +77,7 @@ class Producto {
             console.log('El stock es suficiente.')
         }
     }
+    
 
     mostrarCompraTotal() {
         if (this.unidades <= this.stock) {
@@ -122,10 +125,10 @@ function sumarTotalesCompras() {
 
 function comprar(elproducto) {
     elproducto.pedirUnidades(elproducto.unidades)
-    elproducto.stockActual()
     elproducto.ventaTotalPesos()
     elproducto.ventaTotalunidades()
     elproducto.mostrarCompraTotal()
+    elproducto.stockActual()
 }
 
 function tipoInexistente() {
