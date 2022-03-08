@@ -8,7 +8,7 @@ let buscarBurga
 
 //CLASE CONSTRUCTORA
 class Producto {
-    constructor(nombre, stock, precio, unidades, unidadesTotales, precioVenta, precioVentaTotal) {
+    constructor(nombre, stock, precio, unidades, unidadesTotales, precioVenta, precioVentaTotal, categoria, id, img) {
         this.nombre = nombre.toUpperCase()
         this.stock = stock
         this.precio = precio
@@ -16,6 +16,9 @@ class Producto {
         this.unidadesTotales = unidadesTotales
         this.precioVenta = precioVenta
         this.precioVentaTotal = precioVentaTotal
+        this.categoria = categoria
+        this.id = id
+        this.img = img
     }
 
     pedirUnidades() {
@@ -90,15 +93,67 @@ class Producto {
 }
 
 //OBJETOS
-const producto1 = new Producto('CARNE', 10, 500, 0, 0, 0, 0)
-const producto2 = new Producto('POLLO', 20, 400, 0, 0, 0, 0)
-const producto3 = new Producto('VEGAN', 15, 450, 0, 0, 0, 0)
+const producto1 = new Producto('BUENOS AIRES', 10, 500, 0, 0, 0, 0,'CARNE', 1, "./Images/compressImg/a.png")
+const producto2 = new Producto('MADRID', 20, 400, 0, 0, 0, 0, 'CARNE', 2, "./Images/compressImg/b.png")
+const producto3 = new Producto('LONDRES', 15, 450, 0, 0, 0, 0, 'POLLO', 3, "./Images/compressImg/c.png")
+const producto4 = new Producto('LIMA', 10, 500, 0, 0, 0, 0,'POLLO', 4, "./Images/compressImg/d.png")
+const producto5 = new Producto('CANCUN', 20, 400, 0, 0, 0, 0, 'VEGANA', 5, "./Images/compressImg/e.png")
+const producto6 = new Producto('MIAMI', 15, 450, 0, 0, 0, 0, 'VEGANA', 6, "./Images/compressImg/a.png")
 
 //ARRAY CON OBJETOS
 const listaProdu = []
 listaProdu.push(producto1)
 listaProdu.push(producto2)
 listaProdu.push(producto3)
+listaProdu.push(producto4)
+listaProdu.push(producto5)
+listaProdu.push(producto6)
+
+// let categoriaProducto = prompt('ingresa la categoria del producto que queres ver: ')
+
+// const listaCateg = listaProdu.filter(x => x.categoria == categoriaProducto )
+
+let botonComprar = document.querySelector('.btncompraonline')
+
+botonComprar.addEventListener('click', desplegarProdus)
+
+function desplegarProdus() {
+
+    let catalogoloco = document.querySelector(".catalogo")
+
+    catalogoloco.innerHTML=""
+
+    for (const producto of listaProdu) {
+        let contenedor = document.createElement("div")
+        contenedor.className="card col-lg-3 bg-dark "
+
+        contenedor.innerHTML = `<img src=${producto.img}></img>
+                                <h4>${producto.nombre}</h4>
+                                <p>Precio: ${producto.precio}</p>
+                                <button id="btnmas">+</button>
+                                <button id="btnmenos">-</button>
+                                `
+        catalogoloco.appendChild(contenedor)
+    }
+}
+
+
+let botonmas =
+document.getElementById('btnmas')
+botonmas.addEventListener ('click', respuestaClickeo)
+
+function respuestaClickeo() {
+    console.log('respuesta clickeo')
+}
+
+let botonmenos =
+document.getElementById('btnmenos')
+botonmenos.addEventListener ('click', respuestaClickeo)
+
+function respuestaClickeo() {
+    console.log('respuesta clickeo')
+}
+
 
 //FUNCIONES
 function totalizarPesos() {
@@ -140,6 +195,7 @@ for (const producto of listaProdu) {
     contador++
     listadoProductosDisponibles += '\n ' + contador + '- ' + producto.nombre
 }
+
 
 //EJECUCIÓN
 let nombreUser = prompt('Ingrese su nombre')

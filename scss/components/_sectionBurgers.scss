@@ -41,5 +41,38 @@
             justify-content: center;
         }
     }
+    .container {
+        justify-content: center;
+        align-items: center;
+        display:block;
+        padding-top: 10%;
+        .row{
+            
+            .catalogo{
+                display: flex;
+                flex-wrap: wrap;
+                width: 100%;
+                justify-content: center;
+                gap:0.9rem;
+                color:white;
+                text-align: center;
+                @extend %fuenteTitulos;
+
+                button{
+                    width:10%;
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    align-items: center;
+                    align-self: center;
+                }
+                h4 {
+                    padding-top: 2%;
+                }
+               
+
+            }
+        }
+    }
     
 }
