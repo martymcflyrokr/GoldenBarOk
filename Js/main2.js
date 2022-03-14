@@ -1,10 +1,3 @@
-let seleccionBur
-let totaltodalacompra = 0
-let verResumen
-let contador = 0
-let listadoProductosDisponibles = 'Los productos disponibles son:\n '
-let buscarBurga
-
 class Producto {
     constructor(nombre, stock, precio, unidades, unidadesTotales, precioVenta, precioVentaTotal, categoria, id, img) {
         this.nombre = nombre.toUpperCase()
@@ -70,7 +63,6 @@ class Producto {
         }
     }
 
-
     stockEsInsuficiente() {
         if ((this.stock < this.unidades) || (this.stock < this.ventaTotalunidades)) {
             console.log('No hay stock suficiente. contamos con ' + this.stock + ' unidades disponibles')
@@ -78,7 +70,6 @@ class Producto {
             console.log('El stock es suficiente.')
         }
     }
-
 
     mostrarCompraTotal() {
         if (this.unidades <= this.stock) {
@@ -90,10 +81,10 @@ class Producto {
     }
 }
 
-const producto1 = new Producto('BUENOS AIRES', 10, 500, 0, 0, 0, 0, 'CARNE', 1, "./Images/compressImg/a.png")
+const producto1 = new Producto('BUENOS AIRES', 10, 500, 0, 0, 0, 0,'CARNE', 1, "./Images/compressImg/a.png")
 const producto2 = new Producto('MADRID', 20, 400, 0, 0, 0, 0, 'CARNE', 2, "./Images/compressImg/b.png")
 const producto3 = new Producto('LONDRES', 15, 450, 0, 0, 0, 0, 'POLLO', 3, "./Images/compressImg/c.png")
-const producto4 = new Producto('LIMA', 10, 500, 0, 0, 0, 0, 'POLLO', 4, "./Images/compressImg/d.png")
+const producto4 = new Producto('LIMA', 10, 500, 0, 0, 0, 0,'POLLO', 4, "./Images/compressImg/d.png")
 const producto5 = new Producto('CANCUN', 20, 400, 0, 0, 0, 0, 'VEGANA', 5, "./Images/compressImg/e.png")
 const producto6 = new Producto('MIAMI', 15, 450, 0, 0, 0, 0, 'VEGANA', 6, "./Images/compressImg/a.png")
 
@@ -105,96 +96,105 @@ listaProdu.push(producto4)
 listaProdu.push(producto5)
 listaProdu.push(producto6)
 
-let botonComprar = document.querySelector('.btncompraonline')
+let elBuscador = document.getElementById('buscador')
+let cardCarne = document.querySelector('.cardCarne')
+let cardVegana = document.querySelector('.cardVegana')
+let cardPollo = document.querySelector('.cardPollo')
 
-botonComprar.addEventListener('click', desplegarProdus)
+cardCarne.addEventListener('click',renderCarne)
+cardVegana.addEventListener('click',renderVegana)
+cardPollo.addEventListener('click',renderPollo)
 
-function desplegarProdus() {
-
-    let catalogoloco = document.querySelector(".catalogo")
-
-    catalogoloco.innerHTML = ""
-
+let catalogoloco = document.querySelector(".catalogo")
+catalogoloco.innerHTML=""
     for (const producto of listaProdu) {
         let contenedor = document.createElement("div")
-        contenedor.className = "card col-lg-3 bg-dark "
+        contenedor.className="card border-0 col-lg-3 bg-dark pb-3"
 
         contenedor.innerHTML = `<img src=${producto.img}></img>
                                 <h4>${producto.nombre}</h4>
-                                <p>Precio: ${producto.precio}</p>
+                                <p>Precio: $${producto.precio}</p>
+                                <button id="btnmas${producto.id}" class="btnmas${producto.id}" >+</button>
+                                `
+        catalogoloco.appendChild(contenedor)
+    }
+
+let botonComprar = document.querySelector('.btncompraonline')
+botonComprar.addEventListener('click', desplegarProdus)
+
+function desplegarProdus() {
+    let catalogoloco = document.querySelector(".catalogo")
+    catalogoloco.innerHTML=""
+
+    for (const producto of listaProdu) {
+        let contenedor = document.createElement("div")
+        contenedor.className="card border-0 col-lg-3 bg-dark pb-3"
+
+        contenedor.innerHTML = `<img src=${producto.img}></img>
+                                <h4>${producto.nombre}</h4>
+                                <p>Precio: $${producto.precio}</p>
                                 <button id="btnmas${producto.id}" class="btnmas${producto.id}" >+</button>
                                 `
         catalogoloco.appendChild(contenedor)
     }
 }
 
-function agregarAlCarro() {
+function renderCarne () {
+    console.log ( 'clickeo Carne')
 
-}
+    const listaSegunCategoria = listaProdu.filter(lacategoria => lacategoria.categoria == 'CARNE')
 
+    let catalogoloco = document.querySelector(".catalogo")
+    catalogoloco.innerHTML=""
+    for (const producto of listaSegunCategoria) {
+        let contenedor = document.createElement("div")
+        contenedor.className="card border-0 col-lg-3 bg-dark pb-3"
 
-function totalizarPesos() {
-    totaltodalacompra = totaltodalacompra + producto1.ventaTotalPesos + producto2.ventaTotalPesos + producto3.ventaTotalPesos
-}
-
-function sumarTotalesCompras() {
-    totaltodalacompra = producto1.precioVentaTotal + producto2.precioVentaTotal + producto3.precioVentaTotal
-    alert('Resumen compra total : \n - - - - - - - - - \n' +
-        '\nCliente - ' + nombreUser.toUpperCase() +
-        '\nBurgers Carne - ' + producto1.unidadesTotales + ' unidades: $' + producto1.precioVentaTotal +
-        '\nBurgers Pollo - ' + producto2.unidadesTotales + ' unidades: $' + producto2.precioVentaTotal +
-        '\nBurgers Vegan - ' + producto3.unidadesTotales + ' unidades: $' + producto3.precioVentaTotal +
-        '\nPrecio Total: $' + totaltodalacompra)
-
-    console.log('Resumen compra total : \n - - - - - - - - - \n' +
-        '\nCliente - ' + nombreUser +
-        '\nBurgers Carne - ' + producto1.unidadesTotales + ' unidades: $' + producto1.precioVentaTotal +
-        '\nBurgers Pollo - ' + producto2.unidadesTotales + ' unidades: $' + producto2.precioVentaTotal +
-        '\nBurgers Vegan - ' + producto3.unidadesTotales + ' unidades: $' + producto3.precioVentaTotal +
-        '\nPrecio Total: $' + totaltodalacompra)
-
-}
-
-function comprar(elproducto) {
-    elproducto.pedirUnidades(elproducto.unidades)
-    elproducto.ventaTotalPesos()
-    elproducto.ventaTotalunidades()
-    elproducto.mostrarCompraTotal()
-    elproducto.stockActual()
-}
-
-function tipoInexistente() {
-    console.log('Ingresó un tipo de burger inexistente')
-    alert('El producto ingresado no existe')
-}
-
-for (const producto of listaProdu) {
-    contador++
-    listadoProductosDisponibles += '\n ' + contador + '- ' + producto.nombre
-}
-
-let nombreUser = prompt('Ingrese su nombre')
-let quiereComprar = prompt('Hola ' + nombreUser.toUpperCase() + '\n¿Quiere realizar una compra?\nSi \nNo ')
-
-while (quiereComprar.toUpperCase() === 'SI') {
-
-    seleccionBur = prompt('Ingrese el tipo de hamburguesa que quiere comprar:\n' + listadoProductosDisponibles)
-    let buscarBurga = listaProdu.find(losprodu => losprodu.nombre == seleccionBur.toUpperCase())
-
-    if (buscarBurga) {
-        comprar(buscarBurga)
+        contenedor.innerHTML = `<img src=${producto.img}></img>
+                                <h4>${producto.nombre}</h4>
+                                <p>Precio: $${producto.precio}</p>
+                                <button id="btnmas${producto.id}" class="btnmas${producto.id}" >+</button>
+                                `
+        catalogoloco.appendChild(contenedor)
     }
-    else {
-        tipoInexistente()
+}
+
+function renderVegana () {
+    console.log ( 'clickeo Vegana')
+
+    const listaSegunCategoria = listaProdu.filter(lacategoria => lacategoria.categoria == 'VEGANA')
+
+    let catalogoloco = document.querySelector(".catalogo")
+    catalogoloco.innerHTML=""
+    for (const producto of listaSegunCategoria) {
+        let contenedor = document.createElement("div")
+        contenedor.className="card border-0 col-lg-3 bg-dark pb-3"
+
+        contenedor.innerHTML = `<img src=${producto.img}></img>
+                                <h4>${producto.nombre}</h4>
+                                <p>Precio: $${producto.precio}</p>
+                                <button id="btnmas${producto.id}" class="btnmas${producto.id}" >+</button>
+                                `
+        catalogoloco.appendChild(contenedor)
     }
+}
 
-    verResumen = prompt('¿Quiere ver el resumen de su carrito?')
+function renderPollo () {
+    console.log ( 'clickeo Pollo')
 
-    if (verResumen.toUpperCase() === 'SI') {
-        sumarTotalesCompras()
-    } else {
-        console.log('User no quiere ver el resumen')
+    const listaSegunCategoria = listaProdu.filter(lacategoria => lacategoria.categoria == 'POLLO')
+
+    let catalogoloco = document.querySelector(".catalogo")
+    catalogoloco.innerHTML=""
+    for (const producto of listaSegunCategoria) {
+        let contenedor = document.createElement("div")
+        contenedor.className="card border-0 col-lg-3 bg-dark pb-3"
+
+        contenedor.innerHTML = `<img src=${producto.img}></img>
+                                <h4>${producto.nombre}</h4>
+                                <p>Precio: $${producto.precio}</p>
+                                <button id="btnmas${producto.id}" class="btnmas${producto.id}" >+</button>
+                                `
+        catalogoloco.appendChild(contenedor)
     }
-
-    quiereComprar = prompt('¿Quiere agregar mas productos al carrito?')
 }
