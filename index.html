@@ -114,7 +114,16 @@
                             <button type="button" class="cardVegana btn-dark">VEGANA</button>
                             <button type="button" class="cardPollo btn-dark">POLLO</button>
                             <button type="button" class="btncompraonline btn-dark">VER TODAS</button>
-                            <input type="text" class="buscador">
+                            <input type="text" class="buscador" id="inputBarraBusqueda">
+                            <button class="btn btn-warning" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">VER CARRITO</button>
+                                <div class="offcanvas offcanvas-bottom bg-dark" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
+                                    <div class="offcanvas-header">
+                                        <h5 class="offcanvas-title bg-warning" id="offcanvasBottomLabel">PRODUCTOS SELECCIONADOS</h5>
+                                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                    </div>
+                                    <div class="offcanvas-body small">
+                                    </div>
+                              </div>
                         </div>
                     </div>
                 </div>
@@ -123,6 +132,8 @@
                         <div class="catalogo"></div>
                     </div>
                 </div>
+
+                
 
         </section>
 

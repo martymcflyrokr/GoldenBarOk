@@ -1,3 +1,6 @@
+let elCarrito = []
+
+
 class Producto {
     constructor(nombre, stock, precio, unidades, unidadesTotales, precioVenta, precioVentaTotal, categoria, id, img) {
         this.nombre = nombre.toUpperCase()
@@ -13,7 +16,7 @@ class Producto {
     }
 
     pedirUnidades() {
-        this.unidades = parseInt(prompt('Ingrese la cantidad que desea comprar \nEl stock actual es de ' + this.stock))
+        this.unidades = parseInt(prompt('Ingrese la cantidad que desea mostrarTodo \nEl stock actual es de ' + this.stock))
         if (this.unidades <= this.stock) {
             console.log('Usuario eligió ' + this.unidades + ' unidades tipo ' + this.nombre + ': $' + this.valorVenta())
         }
@@ -76,7 +79,7 @@ class Producto {
             console.log('---------- \nCompra: \nBurgers ' + this.nombre + ' - ' + this.unidadesTotales + ' unidades - $' + this.precioVentaTotal + '\n-------------')
         }
         else {
-            console.log('Usuario eligió mas de lo que podia comprar.')
+            console.log('Usuario eligió mas de lo que podia mostrarTodo.')
         }
     }
 }
@@ -101,9 +104,14 @@ let cardCarne = document.querySelector('.cardCarne')
 let cardVegana = document.querySelector('.cardVegana')
 let cardPollo = document.querySelector('.cardPollo')
 
+/*
 cardCarne.addEventListener('click',renderCarne)
 cardVegana.addEventListener('click',renderVegana)
 cardPollo.addEventListener('click',renderPollo)
+*/
+cardCarne.addEventListener('click',function(){renderizarProductos('CARNE')})
+cardPollo.addEventListener('click',function(){renderizarProductos('POLLO')})
+cardVegana.addEventListener('click',function(){renderizarProductos('VEGANA')})
 
 let catalogoloco = document.querySelector(".catalogo")
 catalogoloco.innerHTML=""
@@ -119,8 +127,8 @@ catalogoloco.innerHTML=""
         catalogoloco.appendChild(contenedor)
     }
 
-let botonComprar = document.querySelector('.btncompraonline')
-botonComprar.addEventListener('click', desplegarProdus)
+let botonmostrarTodo = document.querySelector('.btncompraonline')
+botonmostrarTodo.addEventListener('click', desplegarProdus)
 
 function desplegarProdus() {
     let catalogoloco = document.querySelector(".catalogo")
@@ -139,30 +147,11 @@ function desplegarProdus() {
     }
 }
 
-function renderCarne () {
-    console.log ( 'clickeo Carne')
 
-    const listaSegunCategoria = listaProdu.filter(lacategoria => lacategoria.categoria == 'CARNE')
 
-    let catalogoloco = document.querySelector(".catalogo")
-    catalogoloco.innerHTML=""
-    for (const producto of listaSegunCategoria) {
-        let contenedor = document.createElement("div")
-        contenedor.className="card border-0 col-lg-3 bg-dark pb-3"
+function renderizarProductos (categoria) {
 
-        contenedor.innerHTML = `<img src=${producto.img}></img>
-                                <h4>${producto.nombre}</h4>
-                                <p>Precio: $${producto.precio}</p>
-                                <button id="btnmas${producto.id}" class="btnmas${producto.id}" >+</button>
-                                `
-        catalogoloco.appendChild(contenedor)
-    }
-}
-
-function renderVegana () {
-    console.log ( 'clickeo Vegana')
-
-    const listaSegunCategoria = listaProdu.filter(lacategoria => lacategoria.categoria == 'VEGANA')
+    const listaSegunCategoria = listaProdu.filter(lacategoria => lacategoria.categoria == categoria)
 
     let catalogoloco = document.querySelector(".catalogo")
     catalogoloco.innerHTML=""
@@ -179,22 +168,19 @@ function renderVegana () {
     }
 }
 
-function renderPollo () {
-    console.log ( 'clickeo Pollo')
+function sumarAlCarro() {
 
-    const listaSegunCategoria = listaProdu.filter(lacategoria => lacategoria.categoria == 'POLLO')
-
-    let catalogoloco = document.querySelector(".catalogo")
-    catalogoloco.innerHTML=""
-    for (const producto of listaSegunCategoria) {
-        let contenedor = document.createElement("div")
-        contenedor.className="card border-0 col-lg-3 bg-dark pb-3"
-
-        contenedor.innerHTML = `<img src=${producto.img}></img>
+    let sumarProdusAlCarro = document.querySelector(".offcanvas-body")
+    let contenedorCarro = document.createElement("div")
+    contenedorCarro.innerHTML = `<img src=${producto.img}></img>
                                 <h4>${producto.nombre}</h4>
-                                <p>Precio: $${producto.precio}</p>
-                                <button id="btnmas${producto.id}" class="btnmas${producto.id}" >+</button>
-                                `
-        catalogoloco.appendChild(contenedor)
-    }
+                                <p>Precio: $${producto.precio}</p>`
+    sumarProdusAlCarro.appendChild(contenedorCarro)
+    
 }
+
+
+let inputBusqueda = document.getElementById("inputBarraBusqueda")
+inputBusqueda.addEventListener('input', () => {
+    console.log(inputBusqueda.value)
+})
