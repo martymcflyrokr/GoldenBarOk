@@ -126,6 +126,7 @@ filtroPollo.addEventListener('click', function () { rendearSegunCat('POLLO') })
 let inputBusqueda = document.getElementById("inputBarraBusqueda")
 inputBusqueda.addEventListener('input', () => {
     console.log(inputBusqueda.value)
+    //pendiente de armado de filtro
 })
 
 function rendearprodus() {
@@ -253,24 +254,23 @@ function rendearCarro() {
     const carroSinDuplicados = [...new Set(elCarrito)]
 
     carroSinDuplicados.forEach((item) => {
-        const itemElegido = listaProdu.filter((itemBD) => {
-            return itemBD.id === parseInt(item)
+        const miItem = listaProdu.filter((itemBaseDatos) => {
+            return itemBaseDatos.id === parseInt(item)
         })
 
         const unitItems = elCarrito.reduce((total, itemId) => {
-            return itemId === itemElegido ? total += 1 : total
+            return itemId === item ? total += 1 : total
         }, 0)
 
         const elNodoCarro = document.createElement('div')
         elNodoCarro.classList.add('card', 'col-sm-2')
 
         const TituloCard = document.createElement('p')
-        TituloCard.textContent = `${unitItems} x ${itemElegido[0].nombre} - $${itemElegido[0].precio}`
+        TituloCard.textContent = `${unitItems} x ${miItem[0].nombre} - $${miItem[0].precio}`
 
         const cuerpoCardsCarro = document.createElement('div')
         cuerpoCardsCarro.classList.add('card-body')
         
-
         const botonBorrar = document.createElement('button')
         botonBorrar.classList.add('btn', 'btn-danger', 'mx-5')
         botonBorrar.textContent = 'X'
@@ -279,36 +279,13 @@ function rendearCarro() {
 
         const imgMiniatura = document.createElement('IMG')
         imgMiniatura.setAttribute('width', '100%')
-        imgMiniatura.setAttribute('src', itemElegido[0].img)
+        imgMiniatura.setAttribute('src', miItem[0].img)
 
-        
         elNodoCarro.appendChild(TituloCard)
         elNodoCarro.appendChild(imgMiniatura)
         elNodoCarro.appendChild(botonBorrar)
         elNodoCarro.appendChild(cuerpoCardsCarro)
         DOMcarro.appendChild(elNodoCarro)
-
-
-        /*
-        const elNodo = document.createElement('li')
-        elNodo.classList.add('list-group-item', 'text-rigth', 'mx-2')
-        elNodo.textContent = `${unitItems} x ${itemElegido[0].nombre} - $${itemElegido[0].precio}`
-        
-        const imgMiniatura = document.createElement('IMG')
-        imgMiniatura.setAttribute('width','10%')
-        imgMiniatura.setAttribute('src', itemElegido[0].img )
-
-        const botonBorrar = document.createElement('button')
-        botonBorrar.classList.add('btn', 'btn-danger', 'mx-5')
-        botonBorrar.textContent = 'X'
-        botonBorrar.dataset.item = item;
-        botonBorrar.addEventListener('click', borrarItemCarro)
-
-        elNodo.appendChild(imgMiniatura)
-        elNodo.appendChild(botonBorrar)
-        DOMcarro.appendChild(elNodo)
-        */
-       
     })
 
     DOMtotal.textContent = calculoTotalCarro()
@@ -329,6 +306,7 @@ function borrarItemCarro(e) {
 
 function calculoTotalCarro() {
 //pendiente
+    
 }
 
 //main
