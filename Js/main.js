@@ -127,7 +127,7 @@ catalogoloco.innerHTML=""
         catalogoloco.appendChild(contenedor)
     }
 
-let botonmostrarTodo = document.querySelector('.btncompraonline')
+let botonmostrarTodo = document.querySelector('.btnVerTodas')
 botonmostrarTodo.addEventListener('click', desplegarProdus)
 
 function desplegarProdus() {
@@ -148,7 +148,6 @@ function desplegarProdus() {
 }
 
 
-
 function renderizarProductos (categoria) {
 
     const listaSegunCategoria = listaProdu.filter(lacategoria => lacategoria.categoria == categoria)
@@ -164,9 +163,19 @@ function renderizarProductos (categoria) {
                                 <p>Precio: $${producto.precio}</p>
                                 <button id="btnmas${producto.id}" class="btnmas${producto.id}" >+</button>
                                 `
+                            
         catalogoloco.appendChild(contenedor)
     }
 }
+
+
+for(const producto of desplegarProdus) { 
+    let btnComprar = document.getElementById(`btnmas${producto.id}`)
+        btnComprar.onclick = function(sumarAlCarro){
+            
+        }
+}
+
 
 function sumarAlCarro() {
 
