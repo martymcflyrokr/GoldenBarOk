@@ -1,4 +1,9 @@
 let elCarrito = []
+const DOMcatalogo = document.getElementById('catalogo')
+const DOMcarro = document.querySelector('#listaDelCarro')
+const DOMtotal = document.querySelector('#mostrarTotal')
+const miLocalStorage = window.localStorage
+const listaSegunCategoria = []
 
 
 class Producto {
@@ -84,10 +89,10 @@ class Producto {
     }
 }
 
-const producto1 = new Producto('BUENOS AIRES', 10, 500, 0, 0, 0, 0,'CARNE', 1, "./Images/compressImg/a.png")
+const producto1 = new Producto('BUENOS AIRES', 10, 500, 0, 0, 0, 0, 'CARNE', 1, "./Images/compressImg/a.png")
 const producto2 = new Producto('MADRID', 20, 400, 0, 0, 0, 0, 'CARNE', 2, "./Images/compressImg/b.png")
 const producto3 = new Producto('LONDRES', 15, 450, 0, 0, 0, 0, 'POLLO', 3, "./Images/compressImg/c.png")
-const producto4 = new Producto('LIMA', 10, 500, 0, 0, 0, 0,'POLLO', 4, "./Images/compressImg/d.png")
+const producto4 = new Producto('LIMA', 10, 500, 0, 0, 0, 0, 'POLLO', 4, "./Images/compressImg/d.png")
 const producto5 = new Producto('CANCUN', 20, 400, 0, 0, 0, 0, 'VEGANA', 5, "./Images/compressImg/e.png")
 const producto6 = new Producto('MIAMI', 15, 450, 0, 0, 0, 0, 'VEGANA', 6, "./Images/compressImg/a.png")
 
@@ -100,96 +105,229 @@ listaProdu.push(producto5)
 listaProdu.push(producto6)
 
 let elBuscador = document.getElementById('buscador')
-let cardCarne = document.querySelector('.cardCarne')
-let cardVegana = document.querySelector('.cardVegana')
-let cardPollo = document.querySelector('.cardPollo')
+let filtroCarne = document.getElementById('btnCarne')
+let filtroVegana = document.getElementById('btnVegana')
+let filtroPollo = document.getElementById('btnPollo')
+let filtroVerTodas = document.getElementById('btnVerTodas')
+let verCarritoBtn = document.getElementById('botonCarrillo')
+let inputBarraBusqueda = document.getElementById('inputBarraBusqueda')
 
-/*
-cardCarne.addEventListener('click',renderCarne)
-cardVegana.addEventListener('click',renderVegana)
-cardPollo.addEventListener('click',renderPollo)
-*/
-cardCarne.addEventListener('click',function(){renderizarProductos('CARNE')})
-cardPollo.addEventListener('click',function(){renderizarProductos('POLLO')})
-cardVegana.addEventListener('click',function(){renderizarProductos('VEGANA')})
+filtroCarne.classList.add('btn-dark')
+filtroPollo.classList.add('btn-dark')
+filtroVegana.classList.add('btn-dark')
+filtroVerTodas.classList.add('btn-dark')
+verCarritoBtn.classList.add('btn-warning')
 
-let catalogoloco = document.querySelector(".catalogo")
-catalogoloco.innerHTML=""
-    for (const producto of listaProdu) {
-        let contenedor = document.createElement("div")
-        contenedor.className="card border-0 col-lg-3 bg-dark pb-3"
-
-        contenedor.innerHTML = `<img src=${producto.img}></img>
-                                <h4>${producto.nombre}</h4>
-                                <p>Precio: $${producto.precio}</p>
-                                <button id="btnmas${producto.id}" class="btnmas${producto.id}" >+</button>
-                                `
-        catalogoloco.appendChild(contenedor)
-    }
-
-let botonmostrarTodo = document.querySelector('.btnVerTodas')
-botonmostrarTodo.addEventListener('click', desplegarProdus)
-
-function desplegarProdus() {
-    let catalogoloco = document.querySelector(".catalogo")
-    catalogoloco.innerHTML=""
-
-    for (const producto of listaProdu) {
-        let contenedor = document.createElement("div")
-        contenedor.className="card border-0 col-lg-3 bg-dark pb-3"
-
-        contenedor.innerHTML = `<img src=${producto.img}></img>
-                                <h4>${producto.nombre}</h4>
-                                <p>Precio: $${producto.precio}</p>
-                                <button id="btnmas${producto.id}" class="btnmas${producto.id}" >+</button>
-                                `
-        catalogoloco.appendChild(contenedor)
-    }
-}
-
-
-function renderizarProductos (categoria) {
-
-    const listaSegunCategoria = listaProdu.filter(lacategoria => lacategoria.categoria == categoria)
-
-    let catalogoloco = document.querySelector(".catalogo")
-    catalogoloco.innerHTML=""
-    for (const producto of listaSegunCategoria) {
-        let contenedor = document.createElement("div")
-        contenedor.className="card border-0 col-lg-3 bg-dark pb-3"
-
-        contenedor.innerHTML = `<img src=${producto.img}></img>
-                                <h4>${producto.nombre}</h4>
-                                <p>Precio: $${producto.precio}</p>
-                                <button id="btnmas${producto.id}" class="btnmas${producto.id}" >+</button>
-                                `
-                            
-        catalogoloco.appendChild(contenedor)
-    }
-}
-
-
-for(const producto of desplegarProdus) { 
-    let btnComprar = document.getElementById(`btnmas${producto.id}`)
-        btnComprar.onclick = function(sumarAlCarro){
-            
-        }
-}
-
-
-function sumarAlCarro() {
-
-    let sumarProdusAlCarro = document.querySelector(".offcanvas-body")
-    let contenedorCarro = document.createElement("div")
-    contenedorCarro.innerHTML = `<img src=${producto.img}></img>
-                                <h4>${producto.nombre}</h4>
-                                <p>Precio: $${producto.precio}</p>`
-    sumarProdusAlCarro.appendChild(contenedorCarro)
-    
-}
-
+filtroVerTodas.addEventListener('click', filtradoParaTodas)
+filtroVegana.addEventListener('click', function () { rendearSegunCat('VEGANA') })
+filtroCarne.addEventListener('click', function () { rendearSegunCat('CARNE') })
+filtroPollo.addEventListener('click', function () { rendearSegunCat('POLLO') })
 
 let inputBusqueda = document.getElementById("inputBarraBusqueda")
 inputBusqueda.addEventListener('input', () => {
     console.log(inputBusqueda.value)
 })
+
+function rendearprodus() {
+
+    listaProdu.forEach((info) => {
+
+        const nodoCatalogo = document.createElement('div')
+        nodoCatalogo.classList.add('card', 'col-sm-4')
+
+        const cuerpoCards = document.createElement('div')
+        cuerpoCards.classList.add('card-body')
+
+        const tituloCards = document.createElement('h2')
+        tituloCards.classList.add('card-title')
+        tituloCards.textContent = info.nombre
+
+        const preciosCards = document.createElement('p')
+        preciosCards.classList.add('card-text')
+        preciosCards.textContent = `$${info.precio}`
+
+        const imgCards = document.createElement('IMG')
+        imgCards.setAttribute('width', '100%')
+        imgCards.setAttribute('src', info.img)
+
+        const botonCards = document.createElement('button')
+        botonCards.classList.add('btn', 'btn-primary')
+        botonCards.textContent = '+'
+        botonCards.setAttribute('marcador', info.id)
+        botonCards.addEventListener('click', agregarAlCarro)
+
+        cuerpoCards.appendChild(tituloCards)
+        cuerpoCards.appendChild(preciosCards)
+        cuerpoCards.appendChild(imgCards)
+        cuerpoCards.appendChild(botonCards)
+        nodoCatalogo.appendChild(cuerpoCards)
+        DOMcatalogo.appendChild(nodoCatalogo)
+    })
+}
+
+function filtradoParaTodas() {
+    DOMcatalogo.innerHTML = ''
+
+    listaProdu.forEach((info) => {
+
+        const nodoCatalogo = document.createElement('div')
+        nodoCatalogo.classList.add('card', 'col-sm-4')
+
+        const cuerpoCards = document.createElement('div')
+        cuerpoCards.classList.add('card-body')
+
+        const tituloCards = document.createElement('h2')
+        tituloCards.classList.add('card-title')
+        tituloCards.textContent = info.nombre
+
+        const preciosCards = document.createElement('p')
+        preciosCards.classList.add('card-text')
+        preciosCards.textContent = `$${info.precio}`
+
+        const imgCards = document.createElement('IMG')
+        imgCards.setAttribute('width', '100%')
+        imgCards.setAttribute('src', info.img)
+
+        const botonCards = document.createElement('button')
+        botonCards.classList.add('btn', 'btn-primary')
+        botonCards.textContent = '+'
+        botonCards.setAttribute('marcador', info.id)
+        botonCards.addEventListener('click', agregarAlCarro)
+
+        cuerpoCards.appendChild(tituloCards)
+        cuerpoCards.appendChild(preciosCards)
+        cuerpoCards.appendChild(imgCards)
+        cuerpoCards.appendChild(botonCards)
+        nodoCatalogo.appendChild(cuerpoCards)
+        DOMcatalogo.appendChild(nodoCatalogo)
+    })
+}
+
+function rendearSegunCat(categoria) {
+    DOMcatalogo.innerHTML = ''
+    const listaSegunCategoria = listaProdu.filter(lacategoria => lacategoria.categoria == categoria)
+    listaSegunCategoria.forEach((info) => {
+
+        const nodoCatalogo = document.createElement('div')
+        nodoCatalogo.classList.add('card', 'col-sm-4')
+
+        const cuerpoCards = document.createElement('div')
+        cuerpoCards.classList.add('card-body')
+
+        const tituloCards = document.createElement('h2')
+        tituloCards.classList.add('card-title')
+        tituloCards.textContent = info.nombre
+
+        const preciosCards = document.createElement('p')
+        preciosCards.classList.add('card-text')
+        preciosCards.textContent = `$${info.precio}`
+
+        const imgCards = document.createElement('IMG')
+        imgCards.setAttribute('width', '100%')
+        imgCards.setAttribute('src', info.img)
+
+        const botonCards = document.createElement('button')
+        botonCards.classList.add('btn', 'btn-primary')
+        botonCards.textContent = '+'
+        botonCards.setAttribute('marcador', info.id)
+        botonCards.addEventListener('click', agregarAlCarro)
+
+        cuerpoCards.appendChild(tituloCards)
+        cuerpoCards.appendChild(preciosCards)
+        cuerpoCards.appendChild(imgCards)
+        cuerpoCards.appendChild(botonCards)
+        nodoCatalogo.appendChild(cuerpoCards)
+        DOMcatalogo.appendChild(nodoCatalogo)
+    })
+}
+
+function agregarAlCarro(e) {
+    elCarrito.push(e.target.getAttribute('marcador'))
+    rendearCarro()
+    guardarCarroLocalSt()
+}
+
+function rendearCarro() {
+    DOMcarro.textContent = ''
+    console.log(elCarrito)
+    const carroSinDuplicados = [...new Set(elCarrito)]
+
+    carroSinDuplicados.forEach((item) => {
+        const itemElegido = listaProdu.filter((itemBD) => {
+            return itemBD.id === parseInt(item)
+        })
+
+        const unitItems = elCarrito.reduce((total, itemId) => {
+            return itemId === itemElegido ? total += 1 : total
+        }, 0)
+
+        const elNodoCarro = document.createElement('div')
+        elNodoCarro.classList.add('card', 'col-sm-2')
+
+        const TituloCard = document.createElement('p')
+        TituloCard.textContent = `${unitItems} x ${itemElegido[0].nombre} - $${itemElegido[0].precio}`
+
+        const cuerpoCardsCarro = document.createElement('div')
+        cuerpoCardsCarro.classList.add('card-body')
+
+        const botonBorrar = document.createElement('button')
+        botonBorrar.classList.add('btn', 'btn-danger', 'mx-5')
+        botonBorrar.textContent = 'X'
+        botonBorrar.dataset.item = item;
+        botonBorrar.addEventListener('click', borrarItemCarro)
+
+        const imgMiniatura = document.createElement('IMG')
+        imgMiniatura.setAttribute('width', '100%')
+        imgMiniatura.setAttribute('src', itemElegido[0].img)
+
+        elNodoCarro.appendChild(TituloCard)
+        elNodoCarro.appendChild(cuerpoCardsCarro)
+        elNodoCarro.appendChild(imgMiniatura)
+        elNodoCarro.appendChild(botonBorrar)
+        DOMcarro.appendChild(elNodoCarro)
+
+
+        /*
+        const elNodo = document.createElement('li')
+        elNodo.classList.add('list-group-item', 'text-rigth', 'mx-2')
+        elNodo.textContent = `${unitItems} x ${itemElegido[0].nombre} - $${itemElegido[0].precio}`
+        
+        const imgMiniatura = document.createElement('IMG')
+        imgMiniatura.setAttribute('width','10%')
+        imgMiniatura.setAttribute('src', itemElegido[0].img )
+
+        const botonBorrar = document.createElement('button')
+        botonBorrar.classList.add('btn', 'btn-danger', 'mx-5')
+        botonBorrar.textContent = 'X'
+        botonBorrar.dataset.item = item;
+        botonBorrar.addEventListener('click', borrarItemCarro)
+
+        elNodo.appendChild(imgMiniatura)
+        elNodo.appendChild(botonBorrar)
+        DOMcarro.appendChild(elNodo)
+        */
+    })
+
+    DOMtotal.textContent = calculoTotalCarro()
+}
+
+function guardarCarroLocalSt() {
+    miLocalStorage.setItem('carro', JSON.stringify(elCarrito))
+}
+
+function borrarItemCarro() {
+    const id = e.target.dataset.item
+    elCarrito = elCarrito.filter((carritoId) => {
+        return carritoId !== id
+    })
+    rendearCarro()
+    guardarCarroLocalSt()
+}
+
+function calculoTotalCarro() {
+//pendiente
+}
+
+//main
+rendearprodus()
+rendearCarro()
