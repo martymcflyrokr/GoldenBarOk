@@ -269,6 +269,7 @@ function rendearCarro() {
 
         const cuerpoCardsCarro = document.createElement('div')
         cuerpoCardsCarro.classList.add('card-body')
+        
 
         const botonBorrar = document.createElement('button')
         botonBorrar.classList.add('btn', 'btn-danger', 'mx-5')
@@ -280,10 +281,11 @@ function rendearCarro() {
         imgMiniatura.setAttribute('width', '100%')
         imgMiniatura.setAttribute('src', itemElegido[0].img)
 
+        
         elNodoCarro.appendChild(TituloCard)
-        elNodoCarro.appendChild(cuerpoCardsCarro)
         elNodoCarro.appendChild(imgMiniatura)
         elNodoCarro.appendChild(botonBorrar)
+        elNodoCarro.appendChild(cuerpoCardsCarro)
         DOMcarro.appendChild(elNodoCarro)
 
 
@@ -306,6 +308,7 @@ function rendearCarro() {
         elNodo.appendChild(botonBorrar)
         DOMcarro.appendChild(elNodo)
         */
+       
     })
 
     DOMtotal.textContent = calculoTotalCarro()
@@ -315,7 +318,7 @@ function guardarCarroLocalSt() {
     miLocalStorage.setItem('carro', JSON.stringify(elCarrito))
 }
 
-function borrarItemCarro() {
+function borrarItemCarro(e) {
     const id = e.target.dataset.item
     elCarrito = elCarrito.filter((carritoId) => {
         return carritoId !== id

@@ -100,13 +100,14 @@
 
         <!-- Tarjetas Burgers -->
         <section class="sectionBurgers align-items-center" id="sectionBurgers">
-            <div class="container containerBurgers pt-5 pb-5">
+            <div class="container containerBurgers">
                 <div class="conTitleBurg d-flex flex-wrap justify-content-center" data-aos="fade-up"
                     data-aos-anchor-placement="center-bottom" data-aos-duration="200">
                     <h2>
                         NUESTRAS BURGERS
                     </h2>
                 </div>
+
                 <div class="containerBotones">
                     <div class="row">
                         <div class="col">
@@ -115,26 +116,31 @@
                             <button type="button" class="btnPollo" id="btnPollo">POLLO</button>
                             <button type="button" class="btnVerTodas" id="btnVerTodas">VER TODAS</button>
                             <input type="text" class="buscador" id="inputBarraBusqueda">
-                            <button class="btn" type="button" id= "botonCarrillo" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">VER CARRITO</button>
-                                <div class="offcanvas offcanvas-bottom bg-dark" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
-                                    <div class="offcanvas-header">
-                                        <h5 class="offcanvas-title bg-warning" id="offcanvasBottomLabel">PRODUCTOS SELECCIONADOS</h5>
-                                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                            <button class="btn" type="button" id="botonCarrillo" data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">VER CARRITO</button>
+                            <div class="offcanvas offcanvas-bottom bg-dark" tabindex="-1" id="offcanvasBottom"
+                                aria-labelledby="offcanvasBottomLabel">
+                                <div class="offcanvas-header">
+                                    <h5 class="offcanvas-title bg-warning" id="offcanvasBottomLabel">PRODUCTOS
+                                        SELECCIONADOS</h5>
+                                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="offcanvas-body">
+                                    <ul id="listaDelCarro"></ul>
+                                    <div id="mostrarTotal"></div>
                                     </div>
-                                    <div class="offcanvas-body d-row">
-                                        <ul id="listaDelCarro"></ul>
-                                        <div id="mostrarTotal"></div>
-                                    </div>
-                                    
-                              </div>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12 row" id="catalogo"></div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12 row" id="catalogo"></div>
+                        </div>
                     </div>
-                </div>
+
 
         </section>
 
