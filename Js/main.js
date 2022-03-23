@@ -252,7 +252,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function rendearCarro() {
         DOMcarro.textContent = ''
-        console.log(elCarrito)
         const carroSinDuplicados = [...new Set(elCarrito)]
 
         carroSinDuplicados.forEach((item) => {
