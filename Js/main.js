@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const DOMbotonVaciarCarro = document.querySelector('#botonVaciarCarro')
     const miLocalStorage = window.localStorage
 
-
     class Producto {
         constructor(nombre, stock, precio, unidades, unidadesTotales, precioVenta, precioVentaTotal, categoria, id, img) {
             this.nombre = nombre.toUpperCase()
@@ -329,10 +328,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    
     DOMbotonVaciarCarro.addEventListener('click', vaciarCarrito);
     
-
     //main
     cargarCarritoDeLocalStorage()
     rendearprodus()
