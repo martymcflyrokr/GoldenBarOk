@@ -6,6 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const DOMtotal = document.querySelector('#mostrarTotal')
     const DOMbotonVaciarCarro = document.querySelector('#botonVaciarCarro')
     const miLocalStorage = window.localStorage
+    const styleCarro = document.getElementById('listaDelCarro')
+    styleCarro.classList.add('d-flex')
+    styleCarro.classList.add('gap-3')
+    styleCarro.classList.add('align-items-center')
 
     class Producto {
         constructor(nombre, stock, precio, unidades, unidadesTotales, precioVenta, precioVentaTotal, categoria, id, img) {
@@ -118,6 +122,8 @@ document.addEventListener('DOMContentLoaded', () => {
     filtroVerTodas.classList.add('btn-dark')
     verCarritoBtn.classList.add('btn-warning')
     botonVaciarCarro.classList.add('btn-danger')
+    
+    
 
     filtroVerTodas.addEventListener('click', filtradoParaTodas)
     filtroVegana.addEventListener('click', function () { rendearSegunCat('VEGANA') })
@@ -287,9 +293,12 @@ document.addEventListener('DOMContentLoaded', () => {
             elNodoCarro.appendChild(botonBorrar)
             elNodoCarro.appendChild(cuerpoCardsCarro)
             DOMcarro.appendChild(elNodoCarro)
+
+
         })
 
-        DOMtotal.textContent = calculoTotalCarro()
+        DOMtotal.textContent = `PRECIO TOTAL: $${calculoTotalCarro()}`
+        
     }
 
     function borrarItemCarro(e) {

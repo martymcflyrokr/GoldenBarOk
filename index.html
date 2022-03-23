@@ -118,7 +118,7 @@
                             <input type="text" class="buscador" id="inputBarraBusqueda">
                             <button class="btn" type="button" id="botonCarrillo" data-bs-toggle="offcanvas"
                                 data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">VER CARRITO</button>
-                            <div class="offcanvas offcanvas-bottom bg-dark" tabindex="-1" id="offcanvasBottom"
+                            <div class="offcanvas offcanvas-bottom bg-dark" tabindex="2" id="offcanvasBottom"
                                 aria-labelledby="offcanvasBottomLabel">
                                 <div class="offcanvas-header">
                                     <h5 class="offcanvas-title bg-warning" id="offcanvasBottomLabel">PRODUCTOS
@@ -127,10 +127,12 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="offcanvas-body">
+                                    <div class="row">
                                     <ul id="listaDelCarro"></ul>
-                                    <div id="mostrarTotal"></div>
+                                    <h4 id="mostrarTotal" class="bg-light"></h4>
                                     <button id="botonVaciarCarro">Vaciar Carrito</button>
                                     </div>
+                                </div>
 
                                 </div>
                             </div>
