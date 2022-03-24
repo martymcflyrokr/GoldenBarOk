@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    function rendearprodus() {
+    function rendearTodos() {
 
         listaProdu.forEach((info) => {
 
@@ -446,7 +446,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //main
     cargarCarritoDeLocalStorage()
-    rendearprodus()
+    rendearTodos()
     rendearCarro()
 
 })
