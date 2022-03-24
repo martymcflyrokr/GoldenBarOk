@@ -24,7 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
             this.id = id
             this.img = img
         }
-
         pedirUnidades() {
             this.unidades = parseInt(prompt('Ingrese la cantidad que desea mostrarTodo \nEl stock actual es de ' + this.stock))
             if (this.unidades <= this.stock) {
@@ -34,7 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log('Usuario eligio mayor cantidad de la que disponemos. reintentar compra')
             }
         }
-
         stockActual() {
             if (this.unidades <= this.stock) {
                 this.stock -= this.unidades
@@ -46,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             return this.stock
         }
-
         valorVenta() {
             if (this.unidades <= this.stock) {
                 this.precioVenta = this.precio * this.unidades
@@ -57,7 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             return this.precioVenta
         }
-
         ventaTotalPesos() {
             if (this.unidades <= this.stock) {
                 this.precioVentaTotal += this.precioVenta
@@ -66,7 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log('no se suma el producto el precio elegido por que supera el stock.')
             }
         }
-
         ventaTotalunidades() {
             if (this.unidades <= this.stock) {
                 this.unidadesTotales += this.unidades
@@ -75,7 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log('no se suma el valor total por que supera el stock.')
             }
         }
-
         stockEsInsuficiente() {
             if ((this.stock < this.unidades) || (this.stock < this.ventaTotalunidades)) {
                 console.log('No hay stock suficiente. contamos con ' + this.stock + ' unidades disponibles')
@@ -83,7 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log('El stock es suficiente.')
             }
         }
-
         mostrarCompraTotal() {
             if (this.unidades <= this.stock) {
                 console.log('---------- \nCompra: \nBurgers ' + this.nombre + ' - ' + this.unidadesTotales + ' unidades - $' + this.precioVentaTotal + '\n-------------')
@@ -113,29 +106,90 @@ document.addEventListener('DOMContentLoaded', () => {
     let filtroVegana = document.getElementById('btnVegana')
     let filtroPollo = document.getElementById('btnPollo')
     let filtroVerTodas = document.getElementById('btnVerTodas')
+    let btnBuscar = document.getElementById('btnBuscar')
+    let formulario = document.querySelector('#formulario')
     let verCarritoBtn = document.getElementById('botonCarrillo')
-    let inputBusqueda = document.getElementById('inputBarraBusqueda')
 
     filtroCarne.classList.add('btn-dark')
     filtroPollo.classList.add('btn-dark')
     filtroVegana.classList.add('btn-dark')
     filtroVerTodas.classList.add('btn-dark')
+    btnBuscar.classList.add('btn-dark')
     verCarritoBtn.classList.add('btn-warning')
     botonVaciarCarro.classList.add('btn-danger')
-    
-    
 
     filtroVerTodas.addEventListener('click', filtradoParaTodas)
     filtroVegana.addEventListener('click', function () { rendearSegunCat('VEGANA') })
     filtroCarne.addEventListener('click', function () { rendearSegunCat('CARNE') })
     filtroPollo.addEventListener('click', function () { rendearSegunCat('POLLO') })
+    btnBuscar.addEventListener('click', buscarDelInput)
 
-    inputBusqueda.addEventListener('input', buscarDelInput)
-    
     function buscarDelInput(e) {
         e.preventDefault()
-        console.log(inputBusqueda.value)
+        textoIngresado = formulario.value.toUpperCase()
+        rendearSegunBuscar(textoIngresado)
     }
+
+    function rendearSegunBuscar(nombre) {
+        DOMcatalogo.innerHTML = ''
+        const listaSegunBusqueda = listaProdu.filter(elnombre => elnombre.nombre == nombre.toUpperCase())
+
+        const consultaBusqueda = (listaSegunBusqueda !== '') ? 
+
+            listaSegunBusqueda.forEach((info) => {
+
+                const nodoCatalogo = document.createElement('div')
+                nodoCatalogo.classList.add('card', 'col-sm-4')
+
+                const cuerpoCards = document.createElement('div')
+                cuerpoCards.classList.add('card-body')
+
+                const tituloCards = document.createElement('h2')
+                tituloCards.classList.add('card-title')
+                tituloCards.textContent = info.nombre
+
+                const preciosCards = document.createElement('p')
+                preciosCards.classList.add('card-text')
+                preciosCards.textContent = `$${info.precio}`
+
+                const imgCards = document.createElement('IMG')
+                imgCards.setAttribute('width', '100%')
+                imgCards.setAttribute('src', info.img)
+
+                const botonCards = document.createElement('button')
+                botonCards.classList.add('btn', 'btn-primary')
+                botonCards.textContent = '+'
+                botonCards.setAttribute('marcador', info.id)
+                botonCards.addEventListener('click', agregarAlCarro)
+                botonCards.addEventListener('click', () => {
+                    Toastify({
+                        text: "Producto agregado al Carrito!",
+                        duration: 2000,
+                        gravity: 'botom',
+                        position: 'right',
+                        style: {
+                            background: "linear-gradient(to right, #00b09b, #96c93d)",
+                        }
+                    }).showToast()
+                })
+                cuerpoCards.appendChild(tituloCards)
+                cuerpoCards.appendChild(preciosCards)
+                cuerpoCards.appendChild(imgCards)
+                cuerpoCards.appendChild(botonCards)
+                nodoCatalogo.appendChild(cuerpoCards)
+                DOMcatalogo.appendChild(nodoCatalogo)
+            })
+            : Toastify({
+                text: "Producto eliminado del Carrito!",
+                duration: 2000,
+                gravity: 'botom',
+                position: 'right',
+                style: {
+                    background: "linear-gradient(to right, #800080, #FF0000)",
+                }
+            }).showToast()
+    }
+
 
     function rendearprodus() {
 
@@ -161,10 +215,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const botonCards = document.createElement('button')
             botonCards.classList.add('btn', 'btn-primary')
+
             botonCards.textContent = '+'
             botonCards.setAttribute('marcador', info.id)
             botonCards.addEventListener('click', agregarAlCarro)
-
+            botonCards.addEventListener('click', () => {
+                Toastify({
+                    text: "Producto agregado al Carrito!",
+                    duration: 2000,
+                    gravity: 'botom',
+                    position: 'right',
+                    style: {
+                        background: "linear-gradient(to right, #00b09b, #96c93d)",
+                    }
+                }).showToast()
+            })
             cuerpoCards.appendChild(tituloCards)
             cuerpoCards.appendChild(preciosCards)
             cuerpoCards.appendChild(imgCards)
@@ -202,7 +267,17 @@ document.addEventListener('DOMContentLoaded', () => {
             botonCards.textContent = '+'
             botonCards.setAttribute('marcador', info.id)
             botonCards.addEventListener('click', agregarAlCarro)
-
+            botonCards.addEventListener('click', () => {
+                Toastify({
+                    text: "Producto agregado al Carrito!",
+                    duration: 2000,
+                    gravity: 'botom',
+                    position: 'right',
+                    style: {
+                        background: "linear-gradient(to right, #00b09b, #96c93d)",
+                    }
+                }).showToast()
+            })
             cuerpoCards.appendChild(tituloCards)
             cuerpoCards.appendChild(preciosCards)
             cuerpoCards.appendChild(imgCards)
@@ -240,7 +315,17 @@ document.addEventListener('DOMContentLoaded', () => {
             botonCards.textContent = '+'
             botonCards.setAttribute('marcador', info.id)
             botonCards.addEventListener('click', agregarAlCarro)
-
+            botonCards.addEventListener('click', () => {
+                Toastify({
+                    text: "Producto agregado al Carrito!",
+                    duration: 2000,
+                    gravity: 'botom',
+                    position: 'right',
+                    style: {
+                        background: "linear-gradient(to right, #00b09b, #96c93d)",
+                    }
+                }).showToast()
+            })
             cuerpoCards.appendChild(tituloCards)
             cuerpoCards.appendChild(preciosCards)
             cuerpoCards.appendChild(imgCards)
@@ -283,7 +368,18 @@ document.addEventListener('DOMContentLoaded', () => {
             botonBorrar.textContent = 'X'
             botonBorrar.dataset.item = item;
             botonBorrar.addEventListener('click', borrarItemCarro)
+            botonBorrar.addEventListener('click', () => {
+                Toastify({
+                    text: "Producto eliminado del Carrito!",
+                    duration: 2000,
+                    gravity: 'botom',
+                    position: 'right',
+                    style: {
+                        background: "linear-gradient(to right, #800080, #FF0000)",
+                    }
+                }).showToast()
 
+            })
             const imgMiniatura = document.createElement('IMG')
             imgMiniatura.setAttribute('width', '100%')
             imgMiniatura.setAttribute('src', miItem[0].img)
@@ -294,11 +390,10 @@ document.addEventListener('DOMContentLoaded', () => {
             elNodoCarro.appendChild(cuerpoCardsCarro)
             DOMcarro.appendChild(elNodoCarro)
 
-
         })
 
         DOMtotal.textContent = `PRECIO TOTAL: $${calculoTotalCarro()}`
-        
+
     }
 
     function borrarItemCarro(e) {
@@ -337,7 +432,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     DOMbotonVaciarCarro.addEventListener('click', vaciarCarrito);
-    
+    DOMbotonVaciarCarro.addEventListener('click', () => {
+        Toastify({
+            text: "Vaciaste el Carrito correctamente",
+            duration: 2000,
+            gravity: 'botom',
+            position: 'right',
+            style: {
+                background: "linear-gradient(to right, #800080, #FF0000)",
+            }
+        }).showToast()
+    })
+
     //main
     cargarCarritoDeLocalStorage()
     rendearprodus()
