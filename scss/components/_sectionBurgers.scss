@@ -78,7 +78,7 @@
 
                         .btn {
                             margin-top: 1rem;
-                            padding: 1rem 9rem;
+                            padding: 0.4rem 3rem;
                             font-size: 1.4rem;
 
                         }
@@ -139,6 +139,82 @@
             }
         }
 
+    }
+    .container{
+        justify-content: center;
+        align-items: center;
+        .row{
+            justify-content: center;
+            align-items: center;
+            .offcanvas{
+                height: auto;
+                width: 100%;
+                display: flex;
+                justify-items: center;
+                align-content: center;
+                align-items: center;
+                .offcanvas-header{
+                    color: white;
+                }
+                .offcanvas-body{
+                    display: flex;
+                    justify-content: center;
+                    flex-direction: row;
+                    align-content: center;
+
+                    .row{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        .listaDelCarro{
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            .card{
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                .card-body{
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+
+                                    p{
+
+                                    }
+                                    img{
+                                       
+                                    }
+                                    button{
+                                       justify-self: center;
+                                       align-items: center;
+                                        
+                                    }
+                                }
+                                
+                               
+                            }
+
+                        }
+                        #mostrarTotal{
+                            color: white;
+                            text-align: center;
+
+                        }
+                        #btnVaciarCarro{
+                            width: 2rem;
+                            
+                            
+                        }
+                        #btnFinalizarCompra {
+                            width: 2rem;
+                        }
+                    }
+
+                }
+            }
+        }
     }
 
 }

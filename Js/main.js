@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const DOMcarro = document.querySelector('#listaDelCarro')
     const DOMtotal = document.querySelector('#mostrarTotal')
     const DOMbotonVaciarCarro = document.querySelector('#botonVaciarCarro')
+    const DOMbotonfinalizarCompra = document.querySelector('#finalizarCompra')
     const miLocalStorage = window.localStorage
     const styleCarro = document.getElementById('listaDelCarro')
     styleCarro.classList.add('d-flex')
@@ -116,7 +117,10 @@ document.addEventListener('DOMContentLoaded', () => {
     filtroVerTodas.classList.add('btn-dark')
     btnBuscar.classList.add('btn-dark')
     verCarritoBtn.classList.add('btn-warning')
-    botonVaciarCarro.classList.add('btn-danger')
+    DOMbotonVaciarCarro.classList.add('btn-danger')
+    DOMbotonfinalizarCompra.classList.add('btn-success')
+    
+    
     
 
     filtroVerTodas.addEventListener('click', filtradoParaTodas)
@@ -411,7 +415,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cuerpoCardsCarro.classList.add('card-body')
 
             const botonBorrar = document.createElement('button')
-            botonBorrar.classList.add('btn', 'btn-danger', 'mx-5')
+            botonBorrar.classList.add('btn', 'btn-danger', 'mx-9')
             botonBorrar.textContent = 'X'
             botonBorrar.dataset.item = item;
             botonBorrar.addEventListener('click', borrarItemCarro)
@@ -427,13 +431,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 }).showToast()
 
             })
+            
             const imgMiniatura = document.createElement('IMG')
             imgMiniatura.setAttribute('width', '100%')
             imgMiniatura.setAttribute('src', miItem[0].img)
 
-            elNodoCarro.appendChild(TituloCard)
-            elNodoCarro.appendChild(imgMiniatura)
-            elNodoCarro.appendChild(botonBorrar)
+            cuerpoCardsCarro.appendChild(TituloCard)
+            cuerpoCardsCarro.appendChild(imgMiniatura)
+            cuerpoCardsCarro.appendChild(botonBorrar)
             elNodoCarro.appendChild(cuerpoCardsCarro)
             DOMcarro.appendChild(elNodoCarro)
 
@@ -474,11 +479,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function cargarCarritoDeLocalStorage() {
         if (miLocalStorage.getItem('carro') !== null) {
-            elCarrito = JSON.parse(miLocalStorage.getItem('carro'));
+            elCarrito = JSON.parse(miLocalStorage.getItem('carro'))
         }
     }
 
-    DOMbotonVaciarCarro.addEventListener('click', vaciarCarrito);
+    DOMbotonVaciarCarro.addEventListener('click', vaciarCarrito)
     DOMbotonVaciarCarro.addEventListener('click', () => {
         Toastify({
             text: "Vaciaste el Carrito correctamente",
@@ -491,9 +496,28 @@ document.addEventListener('DOMContentLoaded', () => {
         }).showToast()
     })
 
+    DOMbotonfinalizarCompra.addEventListener('click', () => {
+        console.log(elCarrito)
+        if(elCarrito != '') {
+            Swal.fire({
+                icon: 'success',
+                title: 'Su compra se finalizó correctamente!',
+                text: 'Gracias por confiar en GoldenBAR',
+                confirmButtonText: 'Cerrar',
+            })
+            vaciarCarrito()
+        }else{
+            Swal.fire({
+                icon: 'error',
+                title: 'Su carrito esta vacio!',
+                text: 'Puedes intentar agregar productos en el catalogo.',
+                confirmButtonText: 'Cerrar',
+            })
+        }
+        
+    } )
     //main
     cargarCarritoDeLocalStorage()
     rendearTodos()
     rendearCarro()
-
 })

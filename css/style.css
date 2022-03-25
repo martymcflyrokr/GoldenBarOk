@@ -104,7 +104,7 @@ header {
         flex-wrap: wrap; }
         .sectionBurgers .container .row #catalogo .card .card-body .btn {
           margin-top: 1rem;
-          padding: 1rem 9rem;
+          padding: 0.4rem 3rem;
           font-size: 1.4rem; }
       .sectionBurgers .container .row #catalogo .card .overlay {
         position: absolute;
@@ -135,6 +135,52 @@ header {
     .sectionBurgers .containerBotones .row .col button {
       padding: 0.4rem;
       margin-left: 0.05rem; }
+  .sectionBurgers .container {
+    justify-content: center;
+    align-items: center; }
+    .sectionBurgers .container .row {
+      justify-content: center;
+      align-items: center; }
+      .sectionBurgers .container .row .offcanvas {
+        height: auto;
+        width: 100%;
+        display: flex;
+        justify-items: center;
+        align-content: center;
+        align-items: center; }
+        .sectionBurgers .container .row .offcanvas .offcanvas-header {
+          color: white; }
+        .sectionBurgers .container .row .offcanvas .offcanvas-body {
+          display: flex;
+          justify-content: center;
+          flex-direction: row;
+          align-content: center; }
+          .sectionBurgers .container .row .offcanvas .offcanvas-body .row {
+            display: flex;
+            justify-content: center;
+            align-items: center; }
+            .sectionBurgers .container .row .offcanvas .offcanvas-body .row .listaDelCarro {
+              display: flex;
+              align-items: center;
+              justify-content: center; }
+              .sectionBurgers .container .row .offcanvas .offcanvas-body .row .listaDelCarro .card {
+                display: flex;
+                align-items: center;
+                justify-content: center; }
+                .sectionBurgers .container .row .offcanvas .offcanvas-body .row .listaDelCarro .card .card-body {
+                  display: flex;
+                  align-items: center;
+                  justify-content: center; }
+                  .sectionBurgers .container .row .offcanvas .offcanvas-body .row .listaDelCarro .card .card-body button {
+                    justify-self: center;
+                    align-items: center; }
+            .sectionBurgers .container .row .offcanvas .offcanvas-body .row #mostrarTotal {
+              color: white;
+              text-align: center; }
+            .sectionBurgers .container .row .offcanvas .offcanvas-body .row #btnVaciarCarro {
+              width: 2rem; }
+            .sectionBurgers .container .row .offcanvas .offcanvas-body .row #btnFinalizarCompra {
+              width: 2rem; }
 
 .sectionBurgers, .burgerExtendido, .burgerExtendido .contenedorburgerExtendido .conTitleBurg .h1CatalogoBurgers, .sectionPromos {
   font-family: 'Oswald', sans-serif; }
