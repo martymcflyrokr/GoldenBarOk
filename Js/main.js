@@ -117,12 +117,14 @@ document.addEventListener('DOMContentLoaded', () => {
     btnBuscar.classList.add('btn-dark')
     verCarritoBtn.classList.add('btn-warning')
     botonVaciarCarro.classList.add('btn-danger')
+    
 
     filtroVerTodas.addEventListener('click', filtradoParaTodas)
     filtroVegana.addEventListener('click', function () { rendearSegunCat('VEGANA') })
     filtroCarne.addEventListener('click', function () { rendearSegunCat('CARNE') })
     filtroPollo.addEventListener('click', function () { rendearSegunCat('POLLO') })
     btnBuscar.addEventListener('click', buscarDelInput)
+    
 
     function buscarDelInput(e) {
         e.preventDefault()
@@ -130,11 +132,22 @@ document.addEventListener('DOMContentLoaded', () => {
         rendearSegunBuscar(textoIngresado)
     }
 
+    function burgaInexistente() {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...Algo anda mal!',
+            text: 'El producto ingresado no existe',
+            confirmButtonColor: '#FFCC00',
+            confirmButtonText: 'Reintentar',
+        })
+            // formulario.value = ''
+    }
+
     function rendearSegunBuscar(nombre) {
         DOMcatalogo.innerHTML = ''
         const listaSegunBusqueda = listaProdu.filter(elnombre => elnombre.nombre == nombre.toUpperCase())
 
-        const consultaBusqueda = (listaSegunBusqueda !== '') ? 
+        if (listaSegunBusqueda != '') {
 
             listaSegunBusqueda.forEach((info) => {
 
@@ -156,8 +169,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 imgCards.setAttribute('width', '100%')
                 imgCards.setAttribute('src', info.img)
 
+                const efectoOver = document.createElement('div')
+                efectoOver.classList.add('overlay')
+
+                const textoEfectoOver = document.createElement('div')
+                textoEfectoOver.classList.add('text')
+                textoEfectoOver.textContent = `${info.categoria}`
+
                 const botonCards = document.createElement('button')
-                botonCards.classList.add('btn', 'btn-primary')
+                botonCards.classList.add('btn', 'btn-success')
                 botonCards.textContent = '+'
                 botonCards.setAttribute('marcador', info.id)
                 botonCards.addEventListener('click', agregarAlCarro)
@@ -172,6 +192,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     }).showToast()
                 })
+                nodoCatalogo.appendChild(efectoOver)
+                efectoOver.appendChild(textoEfectoOver)
                 cuerpoCards.appendChild(tituloCards)
                 cuerpoCards.appendChild(preciosCards)
                 cuerpoCards.appendChild(imgCards)
@@ -179,17 +201,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 nodoCatalogo.appendChild(cuerpoCards)
                 DOMcatalogo.appendChild(nodoCatalogo)
             })
-            : Toastify({
-                text: "Producto eliminado del Carrito!",
-                duration: 2000,
-                gravity: 'botom',
-                position: 'right',
-                style: {
-                    background: "linear-gradient(to right, #800080, #FF0000)",
-                }
-            }).showToast()
-    }
+        }
+        else {
+            burgaInexistente()
+            rendearTodos()
+        }
 
+    }
 
     function rendearTodos() {
 
@@ -213,9 +231,15 @@ document.addEventListener('DOMContentLoaded', () => {
             imgCards.setAttribute('width', '100%')
             imgCards.setAttribute('src', info.img)
 
-            const botonCards = document.createElement('button')
-            botonCards.classList.add('btn', 'btn-primary')
+            const efectoOver = document.createElement('div')
+            efectoOver.classList.add('overlay')
 
+            const textoEfectoOver = document.createElement('div')
+            textoEfectoOver.classList.add('text')
+            textoEfectoOver.textContent = `${info.categoria}`
+
+            const botonCards = document.createElement('button')
+            botonCards.classList.add('btn', 'btn-success')
             botonCards.textContent = '+'
             botonCards.setAttribute('marcador', info.id)
             botonCards.addEventListener('click', agregarAlCarro)
@@ -230,6 +254,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }).showToast()
             })
+
+            nodoCatalogo.appendChild(efectoOver)
+            efectoOver.appendChild(textoEfectoOver)
             cuerpoCards.appendChild(tituloCards)
             cuerpoCards.appendChild(preciosCards)
             cuerpoCards.appendChild(imgCards)
@@ -262,8 +289,15 @@ document.addEventListener('DOMContentLoaded', () => {
             imgCards.setAttribute('width', '100%')
             imgCards.setAttribute('src', info.img)
 
+            const efectoOver = document.createElement('div')
+            efectoOver.classList.add('overlay')
+
+            const textoEfectoOver = document.createElement('div')
+            textoEfectoOver.classList.add('text')
+            textoEfectoOver.textContent = `${info.categoria}`
+
             const botonCards = document.createElement('button')
-            botonCards.classList.add('btn', 'btn-primary')
+            botonCards.classList.add('btn', 'btn-success')
             botonCards.textContent = '+'
             botonCards.setAttribute('marcador', info.id)
             botonCards.addEventListener('click', agregarAlCarro)
@@ -278,6 +312,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }).showToast()
             })
+
+            nodoCatalogo.appendChild(efectoOver)
+            efectoOver.appendChild(textoEfectoOver)
             cuerpoCards.appendChild(tituloCards)
             cuerpoCards.appendChild(preciosCards)
             cuerpoCards.appendChild(imgCards)
@@ -310,8 +347,15 @@ document.addEventListener('DOMContentLoaded', () => {
             imgCards.setAttribute('width', '100%')
             imgCards.setAttribute('src', info.img)
 
+            const efectoOver = document.createElement('div')
+            efectoOver.classList.add('overlay')
+
+            const textoEfectoOver = document.createElement('div')
+            textoEfectoOver.classList.add('text')
+            textoEfectoOver.textContent = `${info.categoria}`
+
             const botonCards = document.createElement('button')
-            botonCards.classList.add('btn', 'btn-primary')
+            botonCards.classList.add('btn', 'btn-success')
             botonCards.textContent = '+'
             botonCards.setAttribute('marcador', info.id)
             botonCards.addEventListener('click', agregarAlCarro)
@@ -326,6 +370,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }).showToast()
             })
+
+            nodoCatalogo.appendChild(efectoOver)
+            efectoOver.appendChild(textoEfectoOver)
             cuerpoCards.appendChild(tituloCards)
             cuerpoCards.appendChild(preciosCards)
             cuerpoCards.appendChild(imgCards)
