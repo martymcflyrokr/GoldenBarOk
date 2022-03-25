@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
             confirmButtonColor: '#FFCC00',
             confirmButtonText: 'Reintentar',
         })
-            // formulario.value = ''
+            formulario.value = ''
     }
 
     function rendearSegunBuscar(nombre) {
