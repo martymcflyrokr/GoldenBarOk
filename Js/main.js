@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-
     let elCarrito = []
     const DOMcatalogo = document.getElementById('catalogo')
     const DOMcarro = document.querySelector('#listaDelCarro')
@@ -120,16 +119,12 @@ document.addEventListener('DOMContentLoaded', () => {
     DOMbotonVaciarCarro.classList.add('btn-danger')
     DOMbotonfinalizarCompra.classList.add('btn-success')
     
-    
-    
-
     filtroVerTodas.addEventListener('click', filtradoParaTodas)
     filtroVegana.addEventListener('click', function () { rendearSegunCat('VEGANA') })
     filtroCarne.addEventListener('click', function () { rendearSegunCat('CARNE') })
     filtroPollo.addEventListener('click', function () { rendearSegunCat('POLLO') })
     btnBuscar.addEventListener('click', buscarDelInput)
-    
-
+   
     function buscarDelInput(e) {
         e.preventDefault()
         textoIngresado = formulario.value.toUpperCase()
@@ -154,32 +149,24 @@ document.addEventListener('DOMContentLoaded', () => {
         if (listaSegunBusqueda != '') {
 
             listaSegunBusqueda.forEach((info) => {
-
                 const nodoCatalogo = document.createElement('div')
                 nodoCatalogo.classList.add('card', 'col-sm-4')
-
                 const cuerpoCards = document.createElement('div')
                 cuerpoCards.classList.add('card-body')
-
                 const tituloCards = document.createElement('h2')
                 tituloCards.classList.add('card-title')
                 tituloCards.textContent = info.nombre
-
                 const preciosCards = document.createElement('p')
                 preciosCards.classList.add('card-text')
                 preciosCards.textContent = `$${info.precio}`
-
                 const imgCards = document.createElement('IMG')
                 imgCards.setAttribute('width', '100%')
                 imgCards.setAttribute('src', info.img)
-
                 const efectoOver = document.createElement('div')
                 efectoOver.classList.add('overlay')
-
                 const textoEfectoOver = document.createElement('div')
                 textoEfectoOver.classList.add('text')
                 textoEfectoOver.textContent = `${info.categoria}`
-
                 const botonCards = document.createElement('button')
                 botonCards.classList.add('btn', 'btn-success')
                 botonCards.textContent = '+'
@@ -210,38 +197,28 @@ document.addEventListener('DOMContentLoaded', () => {
             burgaInexistente()
             rendearTodos()
         }
-
     }
 
     function rendearTodos() {
-
         listaProdu.forEach((info) => {
-
             const nodoCatalogo = document.createElement('div')
             nodoCatalogo.classList.add('card', 'col-sm-4')
-
             const cuerpoCards = document.createElement('div')
             cuerpoCards.classList.add('card-body')
-
             const tituloCards = document.createElement('h2')
             tituloCards.classList.add('card-title')
             tituloCards.textContent = info.nombre
-
             const preciosCards = document.createElement('p')
             preciosCards.classList.add('card-text')
             preciosCards.textContent = `$${info.precio}`
-
             const imgCards = document.createElement('IMG')
             imgCards.setAttribute('width', '100%')
             imgCards.setAttribute('src', info.img)
-
             const efectoOver = document.createElement('div')
             efectoOver.classList.add('overlay')
-
             const textoEfectoOver = document.createElement('div')
             textoEfectoOver.classList.add('text')
             textoEfectoOver.textContent = `${info.categoria}`
-
             const botonCards = document.createElement('button')
             botonCards.classList.add('btn', 'btn-success')
             botonCards.textContent = '+'
@@ -258,7 +235,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }).showToast()
             })
-
             nodoCatalogo.appendChild(efectoOver)
             efectoOver.appendChild(textoEfectoOver)
             cuerpoCards.appendChild(tituloCards)
@@ -272,34 +248,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function filtradoParaTodas() {
         DOMcatalogo.innerHTML = ''
-
         listaProdu.forEach((info) => {
-
             const nodoCatalogo = document.createElement('div')
             nodoCatalogo.classList.add('card', 'col-sm-4')
-
             const cuerpoCards = document.createElement('div')
             cuerpoCards.classList.add('card-body')
-
             const tituloCards = document.createElement('h2')
             tituloCards.classList.add('card-title')
             tituloCards.textContent = info.nombre
-
             const preciosCards = document.createElement('p')
             preciosCards.classList.add('card-text')
             preciosCards.textContent = `$${info.precio}`
-
             const imgCards = document.createElement('IMG')
             imgCards.setAttribute('width', '100%')
             imgCards.setAttribute('src', info.img)
-
             const efectoOver = document.createElement('div')
             efectoOver.classList.add('overlay')
-
             const textoEfectoOver = document.createElement('div')
             textoEfectoOver.classList.add('text')
             textoEfectoOver.textContent = `${info.categoria}`
-
             const botonCards = document.createElement('button')
             botonCards.classList.add('btn', 'btn-success')
             botonCards.textContent = '+'
@@ -316,7 +283,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }).showToast()
             })
-
             nodoCatalogo.appendChild(efectoOver)
             efectoOver.appendChild(textoEfectoOver)
             cuerpoCards.appendChild(tituloCards)
@@ -332,32 +298,24 @@ document.addEventListener('DOMContentLoaded', () => {
         DOMcatalogo.innerHTML = ''
         const listaSegunCategoria = listaProdu.filter(lacategoria => lacategoria.categoria == categoria)
         listaSegunCategoria.forEach((info) => {
-
             const nodoCatalogo = document.createElement('div')
             nodoCatalogo.classList.add('card', 'col-sm-4')
-
             const cuerpoCards = document.createElement('div')
             cuerpoCards.classList.add('card-body')
-
             const tituloCards = document.createElement('h2')
             tituloCards.classList.add('card-title')
             tituloCards.textContent = info.nombre
-
             const preciosCards = document.createElement('p')
             preciosCards.classList.add('card-text')
             preciosCards.textContent = `$${info.precio}`
-
             const imgCards = document.createElement('IMG')
             imgCards.setAttribute('width', '100%')
             imgCards.setAttribute('src', info.img)
-
             const efectoOver = document.createElement('div')
             efectoOver.classList.add('overlay')
-
             const textoEfectoOver = document.createElement('div')
             textoEfectoOver.classList.add('text')
             textoEfectoOver.textContent = `${info.categoria}`
-
             const botonCards = document.createElement('button')
             botonCards.classList.add('btn', 'btn-success')
             botonCards.textContent = '+'
@@ -374,7 +332,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }).showToast()
             })
-
             nodoCatalogo.appendChild(efectoOver)
             efectoOver.appendChild(textoEfectoOver)
             cuerpoCards.appendChild(tituloCards)
@@ -407,13 +364,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const elNodoCarro = document.createElement('div')
             elNodoCarro.classList.add('card', 'col-sm-2')
-
             const TituloCard = document.createElement('p')
             TituloCard.textContent = `${unitItems} x ${miItem[0].nombre} - $${miItem[0].precio}`
-
             const cuerpoCardsCarro = document.createElement('div')
             cuerpoCardsCarro.classList.add('card-body')
-
             const botonBorrar = document.createElement('button')
             botonBorrar.classList.add('btn', 'btn-danger', 'mx-9')
             botonBorrar.textContent = 'X'
@@ -431,21 +385,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 }).showToast()
 
             })
-            
             const imgMiniatura = document.createElement('IMG')
             imgMiniatura.setAttribute('width', '100%')
             imgMiniatura.setAttribute('src', miItem[0].img)
-
             cuerpoCardsCarro.appendChild(TituloCard)
             cuerpoCardsCarro.appendChild(imgMiniatura)
             cuerpoCardsCarro.appendChild(botonBorrar)
             elNodoCarro.appendChild(cuerpoCardsCarro)
             DOMcarro.appendChild(elNodoCarro)
-
         })
 
         DOMtotal.textContent = `PRECIO TOTAL: $${calculoTotalCarro()}`
-
     }
 
     function borrarItemCarro(e) {
@@ -514,7 +464,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 confirmButtonText: 'Cerrar',
             })
         }
-        
     } )
     //main
     cargarCarritoDeLocalStorage()
