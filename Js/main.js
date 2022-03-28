@@ -87,20 +87,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    const producto1 = new Producto('BUENOS AIRES', 10, 500, 0, 0, 0, 0, 'CARNE', 1, "./Images/compressImg/a.png")
-    const producto2 = new Producto('MADRID', 20, 400, 0, 0, 0, 0, 'CARNE', 2, "./Images/compressImg/b.png")
-    const producto3 = new Producto('LONDRES', 15, 450, 0, 0, 0, 0, 'POLLO', 3, "./Images/compressImg/c.png")
-    const producto4 = new Producto('LIMA', 10, 500, 0, 0, 0, 0, 'POLLO', 4, "./Images/compressImg/d.png")
-    const producto5 = new Producto('CANCUN', 20, 400, 0, 0, 0, 0, 'VEGANA', 5, "./Images/compressImg/e.png")
-    const producto6 = new Producto('MIAMI', 15, 450, 0, 0, 0, 0, 'VEGANA', 6, "./Images/compressImg/a.png")
-
     const listaProdu = []
-    listaProdu.push(producto1)
-    listaProdu.push(producto2)
-    listaProdu.push(producto3)
-    listaProdu.push(producto4)
-    listaProdu.push(producto5)
-    listaProdu.push(producto6)
+    listaProdu.push(new Producto('BUENOS AIRES', 10, 500, 0, 0, 0, 0, 'CARNE', 1, "./Images/compressImg/a.png"))
+    listaProdu.push(new Producto('MADRID', 20, 400, 0, 0, 0, 0, 'CARNE', 2, "./Images/compressImg/b.png"))
+    listaProdu.push(new Producto('LONDRES', 15, 450, 0, 0, 0, 0, 'POLLO', 3, "./Images/compressImg/c.png"))
+    listaProdu.push(new Producto('LIMA', 10, 500, 0, 0, 0, 0, 'POLLO', 4, "./Images/compressImg/d.png"))
+    listaProdu.push(new Producto('CANCUN', 20, 400, 0, 0, 0, 0, 'VEGANA', 5, "./Images/compressImg/e.png"))
+    listaProdu.push(new Producto('MIAMI', 15, 450, 0, 0, 0, 0, 'VEGANA', 6, "./Images/compressImg/a.png"))
 
     let filtroCarne = document.getElementById('btnCarne')
     let filtroVegana = document.getElementById('btnVegana')
