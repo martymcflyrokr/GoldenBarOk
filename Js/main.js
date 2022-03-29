@@ -24,67 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
             this.id = id
             this.img = img
         }
-        pedirUnidades() {
-            this.unidades = parseInt(prompt('Ingrese la cantidad que desea mostrarTodo \nEl stock actual es de ' + this.stock))
-            if (this.unidades <= this.stock) {
-                console.log('Usuario eligió ' + this.unidades + ' unidades tipo ' + this.nombre + ': $' + this.valorVenta())
-            }
-            else {
-                console.log('Usuario eligio mayor cantidad de la que disponemos. reintentar compra')
-            }
-        }
-        stockActual() {
-            if (this.unidades <= this.stock) {
-                this.stock -= this.unidades
-                console.log('El stock actual es: ' + this.stock)
-            }
-            else {
-                alert('La cantidad supera al stock. elija menos unidades.')
-                console.log('Supera el stock')
-            }
-            return this.stock
-        }
-        valorVenta() {
-            if (this.unidades <= this.stock) {
-                this.precioVenta = this.precio * this.unidades
-            }
-            else {
-                alert('Está superando la cantidad que disponemos. Ingrese menor cantidad.')
-                this.pedirUnidades()
-            }
-            return this.precioVenta
-        }
-        ventaTotalPesos() {
-            if (this.unidades <= this.stock) {
-                this.precioVentaTotal += this.precioVenta
-            }
-            else {
-                console.log('no se suma el producto el precio elegido por que supera el stock.')
-            }
-        }
-        ventaTotalunidades() {
-            if (this.unidades <= this.stock) {
-                this.unidadesTotales += this.unidades
-            }
-            else {
-                console.log('no se suma el valor total por que supera el stock.')
-            }
-        }
-        stockEsInsuficiente() {
-            if ((this.stock < this.unidades) || (this.stock < this.ventaTotalunidades)) {
-                console.log('No hay stock suficiente. contamos con ' + this.stock + ' unidades disponibles')
-            } else {
-                console.log('El stock es suficiente.')
-            }
-        }
-        mostrarCompraTotal() {
-            if (this.unidades <= this.stock) {
-                console.log('---------- \nCompra: \nBurgers ' + this.nombre + ' - ' + this.unidadesTotales + ' unidades - $' + this.precioVentaTotal + '\n-------------')
-            }
-            else {
-                console.log('Usuario eligió mas de lo que podia mostrarTodo.')
-            }
-        }
     }
 
     const listaProdu = []
