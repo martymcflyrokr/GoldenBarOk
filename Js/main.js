@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
     let elCarrito = []
-    const DOMcatalogo = document.getElementById('catalogo')
-    const DOMcarro = document.querySelector('#listaDelCarro')
-    const DOMtotal = document.querySelector('#mostrarTotal')
-    const DOMbotonVaciarCarro = document.querySelector('#botonVaciarCarro')
-    const DOMbotonfinalizarCompra = document.querySelector('#finalizarCompra')
+    const domCatalogo = document.getElementById('catalogo')
+    const domCarro = document.querySelector('#listaDelCarro')
+    const domTotal = document.querySelector('#mostrarTotal')
+    const domBotonVaciarCarro = document.querySelector('#botonVaciarCarro')
+    const domBotonFinalizarCompra = document.querySelector('#finalizarCompra')
     const miLocalStorage = window.localStorage
     const styleCarro = document.getElementById('listaDelCarro')
     styleCarro.classList.add('d-flex')
@@ -48,8 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
     filtroVerTodas.classList.add('btn-dark')
     btnBuscar.classList.add('btn-dark')
     verCarritoBtn.classList.add('btn-warning')
-    DOMbotonVaciarCarro.classList.add('btn-danger')
-    DOMbotonfinalizarCompra.classList.add('btn-success')
+    domBotonVaciarCarro.classList.add('btn-danger')
+    domBotonFinalizarCompra.classList.add('btn-success')
     
     filtroVerTodas.addEventListener('click', filtradoParaTodas)
     filtroVegana.addEventListener('click', function () { rendearSegunCat('VEGANA') })
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function rendearSegunBuscar(nombre) {
-        DOMcatalogo.innerHTML = ''
+        domCatalogo.innerHTML = ''
         const listaSegunBusqueda = listaProdu.filter(elnombre => elnombre.nombre == nombre.toUpperCase())
 
         if (listaSegunBusqueda != '') {
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 cuerpoCards.appendChild(imgCards)
                 cuerpoCards.appendChild(botonCards)
                 nodoCatalogo.appendChild(cuerpoCards)
-                DOMcatalogo.appendChild(nodoCatalogo)
+                domCatalogo.appendChild(nodoCatalogo)
             })
         }
         else {
@@ -174,12 +174,12 @@ document.addEventListener('DOMContentLoaded', () => {
             cuerpoCards.appendChild(imgCards)
             cuerpoCards.appendChild(botonCards)
             nodoCatalogo.appendChild(cuerpoCards)
-            DOMcatalogo.appendChild(nodoCatalogo)
+            domCatalogo.appendChild(nodoCatalogo)
         })
     }
 
     function filtradoParaTodas() {
-        DOMcatalogo.innerHTML = ''
+        domCatalogo.innerHTML = ''
         listaProdu.forEach((info) => {
             const nodoCatalogo = document.createElement('div')
             nodoCatalogo.classList.add('card', 'col-sm-4')
@@ -222,12 +222,12 @@ document.addEventListener('DOMContentLoaded', () => {
             cuerpoCards.appendChild(imgCards)
             cuerpoCards.appendChild(botonCards)
             nodoCatalogo.appendChild(cuerpoCards)
-            DOMcatalogo.appendChild(nodoCatalogo)
+            domCatalogo.appendChild(nodoCatalogo)
         })
     }
 
     function rendearSegunCat(categoria) {
-        DOMcatalogo.innerHTML = ''
+        domCatalogo.innerHTML = ''
         const listaSegunCategoria = listaProdu.filter(lacategoria => lacategoria.categoria == categoria)
         listaSegunCategoria.forEach((info) => {
             const nodoCatalogo = document.createElement('div')
@@ -271,7 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cuerpoCards.appendChild(imgCards)
             cuerpoCards.appendChild(botonCards)
             nodoCatalogo.appendChild(cuerpoCards)
-            DOMcatalogo.appendChild(nodoCatalogo)
+            domCatalogo.appendChild(nodoCatalogo)
         })
     }
 
@@ -282,7 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function rendearCarro() {
-        DOMcarro.textContent = ''
+        domCarro.textContent = ''
         const carroSinDuplicados = [...new Set(elCarrito)]
 
         carroSinDuplicados.forEach((item) => {
@@ -324,10 +324,10 @@ document.addEventListener('DOMContentLoaded', () => {
             cuerpoCardsCarro.appendChild(imgMiniatura)
             cuerpoCardsCarro.appendChild(botonBorrar)
             elNodoCarro.appendChild(cuerpoCardsCarro)
-            DOMcarro.appendChild(elNodoCarro)
+            domCarro.appendChild(elNodoCarro)
         })
 
-        DOMtotal.textContent = `PRECIO TOTAL: $${calculoTotalCarro()}`
+        domTotal.textContent = `PRECIO TOTAL: $${calculoTotalCarro()}`
     }
 
     function borrarItemCarro(e) {
@@ -365,8 +365,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    DOMbotonVaciarCarro.addEventListener('click', vaciarCarrito)
-    DOMbotonVaciarCarro.addEventListener('click', () => {
+    domBotonVaciarCarro.addEventListener('click', vaciarCarrito)
+    domBotonVaciarCarro.addEventListener('click', () => {
         Toastify({
             text: "Vaciaste el Carrito correctamente",
             duration: 2000,
@@ -378,7 +378,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }).showToast()
     })
 
-    DOMbotonfinalizarCompra.addEventListener('click', () => {
+    domBotonFinalizarCompra.addEventListener('click', () => {
         console.log(elCarrito)
         if(elCarrito != '') {
             Swal.fire({
