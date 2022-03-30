@@ -74,65 +74,20 @@ document.addEventListener('DOMContentLoaded', () => {
             formulario.value = ''
     }
 
-    function rendearSegunBuscar(nombre) {
-        domCatalogo.innerHTML = ''
-        const listaSegunBusqueda = listaProdu.filter(elnombre => elnombre.nombre == nombre.toUpperCase())
-
-        if (listaSegunBusqueda != '') {
-
-            listaSegunBusqueda.forEach((info) => {
-                const nodoCatalogo = document.createElement('div')
-                nodoCatalogo.classList.add('card', 'col-sm-4')
-                const cuerpoCards = document.createElement('div')
-                cuerpoCards.classList.add('card-body')
-                const tituloCards = document.createElement('h2')
-                tituloCards.classList.add('card-title')
-                tituloCards.textContent = info.nombre
-                const preciosCards = document.createElement('p')
-                preciosCards.classList.add('card-text')
-                preciosCards.textContent = `$${info.precio}`
-                const imgCards = document.createElement('IMG')
-                imgCards.setAttribute('width', '100%')
-                imgCards.setAttribute('src', info.img)
-                const efectoOver = document.createElement('div')
-                efectoOver.classList.add('overlay')
-                const textoEfectoOver = document.createElement('div')
-                textoEfectoOver.classList.add('text')
-                textoEfectoOver.textContent = `${info.categoria}`
-                const botonCards = document.createElement('button')
-                botonCards.classList.add('btn', 'btn-success')
-                botonCards.textContent = '+'
-                botonCards.setAttribute('marcador', info.id)
-                botonCards.addEventListener('click', agregarAlCarro)
-                botonCards.addEventListener('click', () => {
-                    Toastify({
-                        text: "Producto agregado al Carrito!",
-                        duration: 2000,
-                        gravity: 'botom',
-                        position: 'right',
-                        style: {
-                            background: "linear-gradient(to right, #00b09b, #96c93d)",
-                        }
-                    }).showToast()
-                })
-                nodoCatalogo.appendChild(efectoOver)
-                efectoOver.appendChild(textoEfectoOver)
-                cuerpoCards.appendChild(tituloCards)
-                cuerpoCards.appendChild(preciosCards)
-                cuerpoCards.appendChild(imgCards)
-                cuerpoCards.appendChild(botonCards)
-                nodoCatalogo.appendChild(cuerpoCards)
-                domCatalogo.appendChild(nodoCatalogo)
-            })
-        }
-        else {
-            burgaInexistente()
-            rendearTodos()
-        }
+    function productoAgregado() {
+        Toastify({
+            text: "Producto agregado al Carrito!",
+            duration: 2000,
+            gravity: 'botom',
+            position: 'right',
+            style: {
+                background: "linear-gradient(to right, #00b09b, #96c93d)",
+            }
+        }).showToast()
     }
 
-    function rendearTodos() {
-        listaProdu.forEach((info) => {
+    function dibujarCards(array) {
+        array.forEach((info) => {
             const nodoCatalogo = document.createElement('div')
             nodoCatalogo.classList.add('card', 'col-sm-4')
             const cuerpoCards = document.createElement('div')
@@ -157,15 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
             botonCards.setAttribute('marcador', info.id)
             botonCards.addEventListener('click', agregarAlCarro)
             botonCards.addEventListener('click', () => {
-                Toastify({
-                    text: "Producto agregado al Carrito!",
-                    duration: 2000,
-                    gravity: 'botom',
-                    position: 'right',
-                    style: {
-                        background: "linear-gradient(to right, #00b09b, #96c93d)",
-                    }
-                }).showToast()
+                productoAgregado()
             })
             nodoCatalogo.appendChild(efectoOver)
             efectoOver.appendChild(textoEfectoOver)
@@ -176,103 +123,29 @@ document.addEventListener('DOMContentLoaded', () => {
             nodoCatalogo.appendChild(cuerpoCards)
             domCatalogo.appendChild(nodoCatalogo)
         })
+    }
+
+    function rendearSegunBuscar(nombre) {
+        domCatalogo.innerHTML = ''
+        const listaSegunBusqueda = listaProdu.filter(elnombre => elnombre.nombre == nombre.toUpperCase())
+        if (listaSegunBusqueda != '') {
+            dibujarCards(listaSegunBusqueda)
+        }
+        else {
+            burgaInexistente()
+            filtradoParaTodas()
+        }
     }
 
     function filtradoParaTodas() {
         domCatalogo.innerHTML = ''
-        listaProdu.forEach((info) => {
-            const nodoCatalogo = document.createElement('div')
-            nodoCatalogo.classList.add('card', 'col-sm-4')
-            const cuerpoCards = document.createElement('div')
-            cuerpoCards.classList.add('card-body')
-            const tituloCards = document.createElement('h2')
-            tituloCards.classList.add('card-title')
-            tituloCards.textContent = info.nombre
-            const preciosCards = document.createElement('p')
-            preciosCards.classList.add('card-text')
-            preciosCards.textContent = `$${info.precio}`
-            const imgCards = document.createElement('IMG')
-            imgCards.setAttribute('width', '100%')
-            imgCards.setAttribute('src', info.img)
-            const efectoOver = document.createElement('div')
-            efectoOver.classList.add('overlay')
-            const textoEfectoOver = document.createElement('div')
-            textoEfectoOver.classList.add('text')
-            textoEfectoOver.textContent = `${info.categoria}`
-            const botonCards = document.createElement('button')
-            botonCards.classList.add('btn', 'btn-success')
-            botonCards.textContent = '+'
-            botonCards.setAttribute('marcador', info.id)
-            botonCards.addEventListener('click', agregarAlCarro)
-            botonCards.addEventListener('click', () => {
-                Toastify({
-                    text: "Producto agregado al Carrito!",
-                    duration: 2000,
-                    gravity: 'botom',
-                    position: 'right',
-                    style: {
-                        background: "linear-gradient(to right, #00b09b, #96c93d)",
-                    }
-                }).showToast()
-            })
-            nodoCatalogo.appendChild(efectoOver)
-            efectoOver.appendChild(textoEfectoOver)
-            cuerpoCards.appendChild(tituloCards)
-            cuerpoCards.appendChild(preciosCards)
-            cuerpoCards.appendChild(imgCards)
-            cuerpoCards.appendChild(botonCards)
-            nodoCatalogo.appendChild(cuerpoCards)
-            domCatalogo.appendChild(nodoCatalogo)
-        })
+        dibujarCards(listaProdu)
     }
 
     function rendearSegunCat(categoria) {
         domCatalogo.innerHTML = ''
         const listaSegunCategoria = listaProdu.filter(lacategoria => lacategoria.categoria == categoria)
-        listaSegunCategoria.forEach((info) => {
-            const nodoCatalogo = document.createElement('div')
-            nodoCatalogo.classList.add('card', 'col-sm-4')
-            const cuerpoCards = document.createElement('div')
-            cuerpoCards.classList.add('card-body')
-            const tituloCards = document.createElement('h2')
-            tituloCards.classList.add('card-title')
-            tituloCards.textContent = info.nombre
-            const preciosCards = document.createElement('p')
-            preciosCards.classList.add('card-text')
-            preciosCards.textContent = `$${info.precio}`
-            const imgCards = document.createElement('IMG')
-            imgCards.setAttribute('width', '100%')
-            imgCards.setAttribute('src', info.img)
-            const efectoOver = document.createElement('div')
-            efectoOver.classList.add('overlay')
-            const textoEfectoOver = document.createElement('div')
-            textoEfectoOver.classList.add('text')
-            textoEfectoOver.textContent = `${info.categoria}`
-            const botonCards = document.createElement('button')
-            botonCards.classList.add('btn', 'btn-success')
-            botonCards.textContent = '+'
-            botonCards.setAttribute('marcador', info.id)
-            botonCards.addEventListener('click', agregarAlCarro)
-            botonCards.addEventListener('click', () => {
-                Toastify({
-                    text: "Producto agregado al Carrito!",
-                    duration: 2000,
-                    gravity: 'botom',
-                    position: 'right',
-                    style: {
-                        background: "linear-gradient(to right, #00b09b, #96c93d)",
-                    }
-                }).showToast()
-            })
-            nodoCatalogo.appendChild(efectoOver)
-            efectoOver.appendChild(textoEfectoOver)
-            cuerpoCards.appendChild(tituloCards)
-            cuerpoCards.appendChild(preciosCards)
-            cuerpoCards.appendChild(imgCards)
-            cuerpoCards.appendChild(botonCards)
-            nodoCatalogo.appendChild(cuerpoCards)
-            domCatalogo.appendChild(nodoCatalogo)
-        })
+        dibujarCards(listaSegunCategoria)
     }
 
     function agregarAlCarro(e) {
@@ -399,6 +272,6 @@ document.addEventListener('DOMContentLoaded', () => {
     } )
     //main
     cargarCarritoDeLocalStorage()
-    rendearTodos()
+    filtradoParaTodas()
     rendearCarro()
 })
