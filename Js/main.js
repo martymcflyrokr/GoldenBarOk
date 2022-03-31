@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     let elCarrito = []
+    let listaProdu = []
     const domCatalogo = document.getElementById('catalogo')
     const domCarro = document.querySelector('#listaDelCarro')
     const domTotal = document.querySelector('#mostrarTotal')
@@ -25,14 +26,10 @@ document.addEventListener('DOMContentLoaded', () => {
             this.img = img
         }
     }
-
-    const listaProdu = []
-    listaProdu.push(new Producto('BUENOS AIRES', 10, 500, 0, 0, 0, 0, 'CARNE', 1, "./Images/compressImg/a.png"))
-    listaProdu.push(new Producto('MADRID', 20, 400, 0, 0, 0, 0, 'CARNE', 2, "./Images/compressImg/b.png"))
-    listaProdu.push(new Producto('LONDRES', 15, 450, 0, 0, 0, 0, 'POLLO', 3, "./Images/compressImg/c.png"))
-    listaProdu.push(new Producto('LIMA', 10, 500, 0, 0, 0, 0, 'POLLO', 4, "./Images/compressImg/d.png"))
-    listaProdu.push(new Producto('CANCUN', 20, 400, 0, 0, 0, 0, 'VEGANA', 5, "./Images/compressImg/e.png"))
-    listaProdu.push(new Producto('MIAMI', 15, 450, 0, 0, 0, 0, 'VEGANA', 6, "./Images/compressImg/a.png"))
+    
+    fetch('data.json')
+    .then((resp) => resp.json())
+    .then((data) => listaProdu = data)
 
     let filtroCarne = document.getElementById('btnCarne')
     let filtroVegana = document.getElementById('btnVegana')
@@ -66,8 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function burgaInexistente() {
         Swal.fire({
             icon: 'error',
-            title: 'Oops...Algo anda mal!',
-            text: 'El producto ingresado no existe',
+            title: 'El producto ingresado no existe',
+            text: 'Puedes reintentar la busqueda',
             confirmButtonColor: '#FFCC00',
             confirmButtonText: 'Reintentar',
         })

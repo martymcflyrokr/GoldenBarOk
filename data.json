@@ -1,0 +1,50 @@
+[
+    {
+        "nombre": "BUENOS AIRES",
+        "stock": 10,
+        "precio": 500,
+        "categoria": "CARNE",
+        "id": 1,
+        "img": "../Images/compressImg/a.png"
+    },
+    {
+        "nombre": "MADRID",
+        "stock": "20",
+        "precio":400 ,
+        "categoria": "CARNE",
+        "id": 2,
+        "img": "/Images/compressImg/b.png"
+    },
+    {
+        "nombre": "LONDRES",
+        "stock": 15,
+        "precio": 450,
+        "categoria": "POLLO",
+        "id": 3,
+        "img": "../Images/compressImg/c.png"
+    },
+    {
+        "nombre": "LIMA",
+        "stock": 10,
+        "precio": 500,
+        "categoria": "POLLO",
+        "id": 4,
+        "img": "../Images/compressImg/d.png"
+    },
+    {
+        "nombre": "CANCUN",
+        "stock": 20,
+        "precio": 400,
+        "categoria": "VEGANA",
+        "id":5,
+        "img": "../Images/compressImg/e.png"
+    },
+    {
+        "nombre": "MIAMI",
+        "stock": 15,
+        "precio": 450,
+        "categoria": "VEGANA",
+        "id": 6,
+        "img": "../Images/compressImg/a.png"
+    }
+]
