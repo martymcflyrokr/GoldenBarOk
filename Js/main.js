@@ -12,21 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
     styleCarro.classList.add('gap-3')
     styleCarro.classList.add('align-items-center')
 
-    class Producto {
-        constructor(nombre, stock, precio, unidades, unidadesTotales, precioVenta, precioVentaTotal, categoria, id, img) {
-            this.nombre = nombre.toUpperCase()
-            this.stock = stock
-            this.precio = precio
-            this.unidades = unidades
-            this.unidadesTotales = unidadesTotales
-            this.precioVenta = precioVenta
-            this.precioVentaTotal = precioVentaTotal
-            this.categoria = categoria
-            this.id = id
-            this.img = img
-        }
-    }
-    
     fetch('data.json')
     .then((resp) => resp.json())
     .then((data) => listaProdu = data)
