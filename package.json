@@ -13,6 +13,10 @@
     "node-sass": "^6.0.1",
     "nodemon": "^2.0.15"
   },
+  "optionalDependencies": {
+    "fsevents": "*"
+  },
+  
   "dependencies": {
     "ajv": "^6.12.6",
     "abbrev": "^1.1.1",
